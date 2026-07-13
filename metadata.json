@@ -1,0 +1,6 @@
+{
+  "name": "Iguaçu Geradores",
+  "description": "Energia ininterrupta para empresas, indústrias, agronegócio e residências. Venda de grupos geradores conforme dimensionamento técnico, cabines silenciadas com tecnologia de ponta e instalação completa.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
