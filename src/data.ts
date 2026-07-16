@@ -301,7 +301,7 @@ export const PRODUCTS: Product[] = [
     rating: 5,
     tag: 'destaque',
     isConsultation: true,
-    description: 'Assegure o pleno funcionamento do seu gerador quando a energia faltar! Visitas regulares, verificação de fluidos, carga de bateria, limpeza do radiador e testes periódicos de partida.',
+    description: 'Assegure o pleno funcionamento do seu gerador quando a energia faltar! Visitas regulares.',
     imageUrl: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=500&auto=format&fit=crop&q=60'
   },
   {
