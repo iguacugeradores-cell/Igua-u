@@ -1404,8 +1404,7 @@ export default function App() {
               </li>
               <li className="text-slate-400 leading-normal pt-2 border-t border-slate-800/60">
                 <strong>Horário Administrativo:</strong><br />
-                Segunda a Quinta: 08h às 12h e 13h00 às 17h30<br />
-                Sexta-feira: 08h às 12h e 13h00 às 16h30
+                Segunda a Sexta: 08h às 12h e 13:30 às 17:30
               </li>
               <li className="text-green-400 font-semibold flex items-center gap-1.5 pt-1">
                 <span className="w-2 h-2 bg-green-400 rounded-full animate-ping inline-block"></span>
