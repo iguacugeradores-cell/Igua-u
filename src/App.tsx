@@ -1353,7 +1353,7 @@ export default function App() {
             </div>
             
             <p className="text-xs text-slate-400 leading-relaxed">
-              Especialistas em engenharia de energia e grupos geradores de energia diesel e gás. Oferecemos vendas de equipamentos de alto padrão, estoque completo de peças sobressalentes originais, além de plantão técnico qualificado 24 horas.
+              Especialistas em energia e grupos geradores de energia diesel. Oferecemos vendas de equipamentos de alto padrão, estoque completo de peças sobressalentes originais, além de plantão técnico qualificado 24 horas.
             </p>
 
             <div className="space-y-2 pt-2 text-xs">
