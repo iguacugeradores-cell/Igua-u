@@ -1064,10 +1064,10 @@ export default function App() {
             </div>
 
             <h3 className="text-lg md:text-xl font-bold text-slate-900 tracking-tight mb-2">
-              Solicite uma Consultoria Técnica Rápida
+              Solicite uma Consultoria Técnica ou Agende sua Revisão
             </h3>
             <p className="text-xs text-slate-500 mb-6">
-              Preencha os campos abaixo para que nosso especialista entre em contato em menos de 15 minutos via ligação ou WhatsApp.
+              Preencha os campos abaixo para que nosso especialista entre em contato via ligação ou WhatsApp.
             </p>
 
             {leadSubmitted ? (
@@ -1184,7 +1184,7 @@ export default function App() {
                   id="btn-lead-submit"
                 >
                   <Send className="w-4 h-4" />
-                  <span>Iniciar Atendimento de Plantão</span>
+                  <span>Iniciar Atendimento</span>
                 </button>
               </form>
             )}
