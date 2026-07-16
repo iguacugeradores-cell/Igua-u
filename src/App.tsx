@@ -1008,7 +1008,7 @@ export default function App() {
                   <Check className="w-3.5 h-3.5 stroke-[3px]" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-slate-800 text-sm">Manutenção Preventiva Semanal/Mensal</h4>
+                  <h4 className="font-bold text-slate-800 text-sm">Manutenções Preventivas Programadas</h4>
                   <p className="text-xs text-slate-500 leading-relaxed">
                     Realizamos planos de manutenção preventiva personalizados, desenvolvidos conforme a necessidade de cada cliente e a criticidade da operação. A periodicidade pode ser semanal, quinzenal, mensal ou conforme um cronograma específico, garantindo maior confiabilidade, desempenho e vida útil do grupo gerador.
                   </p>
@@ -1200,7 +1200,7 @@ export default function App() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_80%,rgba(220,38,38,0.05),transparent_50%)]"></div>
         
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="text-center max-w-3xl mx-auto">
             <span className="text-brand-blue text-xs font-bold tracking-widest uppercase block mb-3">CONTRATOS DE MANUTENÇÃO</span>
             <h2 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight leading-tight font-heading">
               Planos de Manutenção Preventiva Personalizados
@@ -1208,173 +1208,18 @@ export default function App() {
             <p className="text-slate-400 text-sm md:text-base mt-4 leading-relaxed">
               Garantia de energia 24h por dia, com atendimento prioritário e custos sob controle. Criamos o plano ideal sob medida para a demanda do seu estabelecimento.
             </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
-            
-            {/* Card 1: Comercial & Residencial */}
-            <div className="bg-slate-800/60 rounded-3xl p-8 border border-slate-700/50 hover:border-brand-blue/40 hover:bg-slate-800/80 transition-all flex flex-col justify-between shadow-xl relative group">
-              <div>
-                <span className="bg-brand-blue/10 text-brand-blue text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider inline-block mb-4">
-                  Residencial & Comercial
-                </span>
-                <h3 className="text-xl font-bold text-white mb-2">Plano Essencial</h3>
-                <p className="text-xs text-slate-400 leading-relaxed mb-6">
-                  Ideal para condomínios residenciais, clínicas, escritórios e comércios de pequeno a médio porte.
-                </p>
-                <div className="border-t border-slate-700/50 pt-6 space-y-3">
-                  <div className="flex items-start gap-2.5 text-xs text-slate-300">
-                    <Check className="w-4 h-4 text-brand-blue shrink-0 mt-0.5" />
-                    <span>Visitas preventivas bimestrais/trimestrais</span>
-                  </div>
-                  <div className="flex items-start gap-2.5 text-xs text-slate-300">
-                    <Check className="w-4 h-4 text-brand-blue shrink-0 mt-0.5" />
-                    <span>Testes de funcionamento simulados em carga</span>
-                  </div>
-                  <div className="flex items-start gap-2.5 text-xs text-slate-300">
-                    <Check className="w-4 h-4 text-brand-blue shrink-0 mt-0.5" />
-                    <span>Inspeção e manutenção preventiva do QTA</span>
-                  </div>
-                  <div className="flex items-start gap-2.5 text-xs text-slate-300">
-                    <Check className="w-4 h-4 text-brand-blue shrink-0 mt-0.5" />
-                    <span>Relatório técnico de conformidade após cada visita</span>
-                  </div>
-                  <div className="flex items-start gap-2.5 text-xs text-slate-300">
-                    <Check className="w-4 h-4 text-brand-blue shrink-0 mt-0.5" />
-                    <span>Suporte telefônico prioritário em horário comercial</span>
-                  </div>
-                </div>
-              </div>
-              <div className="pt-8">
-                <a
-                  href="https://wa.me/5545999299311?text=Olá,%20Iguaçu%20Geradores!%20Gostaria%20de%20solicitar%20uma%20proposta%20para%20o%20Plano%20Essencial%20de%20Contrato%20de%20Manutenção."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full bg-slate-700 hover:bg-slate-600 text-white font-bold py-3 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-all cursor-pointer text-center uppercase tracking-wider block"
-                >
-                  <MessageSquare className="w-4 h-4 fill-current shrink-0" />
-                  <span>Solicitar Proposta</span>
-                </a>
-              </div>
+            <div className="mt-10">
+              <a
+                href="https://wa.me/5545999299311?text=Olá,%20Iguaçu%20Geradores!%20Preciso%20de%20um%20contrato%20de%20manutenção%20personalizado%20com%20escopo%20sob%20medida."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-brand-blue hover:bg-brand-blue/90 text-white font-extrabold py-4 px-8 rounded-xl text-xs uppercase tracking-widest transition-all shadow-lg shadow-brand-blue/25 cursor-pointer"
+              >
+                <span>Elaborar Plano Customizado</span>
+                <ArrowRight className="w-4 h-4" />
+              </a>
             </div>
-
-            {/* Card 2: Industrial & Agronegócio - Destacado */}
-            <div className="bg-gradient-to-b from-slate-800 to-slate-900 rounded-3xl p-8 border-2 border-brand-blue hover:scale-[1.02] transition-all flex flex-col justify-between shadow-2xl relative shadow-brand-blue/10">
-              <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-brand-blue text-white text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest shadow-md">
-                Mais Vendido
-              </div>
-              <div>
-                <span className="bg-brand-blue/20 text-brand-blue text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider inline-block mb-4 mt-2">
-                  Indústrias & Agronegócio
-                </span>
-                <h3 className="text-xl font-bold text-white mb-2">Plano Operação Total</h3>
-                <p className="text-xs text-slate-400 leading-relaxed mb-6">
-                  Perfeito para indústrias, aviários, frigoríficos, granjas, supermercados e estabelecimentos com operação de alta demanda.
-                </p>
-                <div className="border-t border-slate-700/50 pt-6 space-y-3">
-                  <div className="flex items-start gap-2.5 text-xs text-slate-200">
-                    <Check className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
-                    <span><strong>Visitas preventivas mensais programadas</strong></span>
-                  </div>
-                  <div className="flex items-start gap-2.5 text-xs text-slate-200">
-                    <Check className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
-                    <span>Suporte e atendimento emergencial 24h / 7 dias</span>
-                  </div>
-                  <div className="flex items-start gap-2.5 text-xs text-slate-200">
-                    <Check className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
-                    <span>Análise técnica de combustível e lubrificantes</span>
-                  </div>
-                  <div className="flex items-start gap-2.5 text-xs text-slate-200">
-                    <Check className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
-                    <span>Laudo de análise termográfica dos painéis elétricos</span>
-                  </div>
-                  <div className="flex items-start gap-2.5 text-xs text-slate-200">
-                    <Check className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
-                    <span>Desconto exclusivo em peças originais de reposição</span>
-                  </div>
-                  <div className="flex items-start gap-2.5 text-xs text-slate-200">
-                    <Check className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
-                    <span>Tempo de resposta prioritário garantido em contrato</span>
-                  </div>
-                </div>
-              </div>
-              <div className="pt-8">
-                <a
-                  href="https://wa.me/5545999299311?text=Olá,%20Iguaçu%20Geradores!%20Gostaria%20de%20receber%20um%20orçamento%20do%20Plano%20Operação%20Total%20de%20Contrato%20de%20Manutenção%20para%20minha%20empresa."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full bg-brand-blue hover:bg-brand-blue/90 text-white font-extrabold py-3.5 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-all cursor-pointer text-center uppercase tracking-wider block shadow-lg shadow-brand-blue/25"
-                >
-                  <MessageSquare className="w-4 h-4 fill-current shrink-0" />
-                  <span>Falar com Especialista</span>
-                </a>
-              </div>
-            </div>
-
-            {/* Card 3: Hospitalar & Crítico */}
-            <div className="bg-slate-800/60 rounded-3xl p-8 border border-slate-700/50 hover:border-brand-blue/40 hover:bg-slate-800/80 transition-all flex flex-col justify-between shadow-xl relative group">
-              <div>
-                <span className="bg-brand-red/15 text-brand-red text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider inline-block mb-4">
-                  Hospitais & Missão Crítica
-                </span>
-                <h3 className="text-xl font-bold text-white mb-2">Plano Prime 24h</h3>
-                <p className="text-xs text-slate-400 leading-relaxed mb-6">
-                  Solução definitiva para hospitais, redes de telecomunicações, data centers e instalações com tolerância zero a falhas.
-                </p>
-                <div className="border-t border-slate-700/50 pt-6 space-y-3">
-                  <div className="flex items-start gap-2.5 text-xs text-slate-300">
-                    <Check className="w-4 h-4 text-brand-red shrink-0 mt-0.5" />
-                    <span><strong>Monitoramento e visitas quinzenais</strong></span>
-                  </div>
-                  <div className="flex items-start gap-2.5 text-xs text-slate-300">
-                    <Check className="w-4 h-4 text-brand-red shrink-0 mt-0.5" />
-                    <span>Plantão exclusivo com técnico dedicado reservado</span>
-                  </div>
-                  <div className="flex items-start gap-2.5 text-xs text-slate-300">
-                    <Check className="w-4 h-4 text-brand-red shrink-0 mt-0.5" />
-                    <span>Substituição preventiva programada de mangueiras, filtros e fluidos</span>
-                  </div>
-                  <div className="flex items-start gap-2.5 text-xs text-slate-300">
-                    <Check className="w-4 h-4 text-brand-red shrink-0 mt-0.5" />
-                    <span>Atendimento emergencial imediato com menor tempo de chegada</span>
-                  </div>
-                  <div className="flex items-start gap-2.5 text-xs text-slate-300">
-                    <Check className="w-4 h-4 text-brand-red shrink-0 mt-0.5" />
-                    <span>Consultoria técnica completa para auditorias e certificações</span>
-                  </div>
-                </div>
-              </div>
-              <div className="pt-8">
-                <a
-                  href="https://wa.me/5545999299311?text=Olá,%20Iguaçu%20Geradores!%20Gostaria%20de%20receber%20uma%20cotação%20para%20o%20Plano%20Prime%2024h%20de%20Manutenção."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full bg-slate-700 hover:bg-slate-600 text-white font-bold py-3 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-all cursor-pointer text-center uppercase tracking-wider block"
-                >
-                  <MessageSquare className="w-4 h-4 fill-current shrink-0" />
-                  <span>Falar com Engenharia</span>
-                </a>
-              </div>
-            </div>
-
           </div>
-
-          <div className="mt-12 text-center bg-slate-800/40 border border-slate-800 rounded-2xl p-6 max-w-3xl mx-auto">
-            <h4 className="text-sm font-bold text-white mb-2">Precisa de um escopo personalizado?</h4>
-            <p className="text-xs text-slate-400 max-w-xl mx-auto mb-4">
-              Nossa equipe de engenharia pode estruturar um contrato sob medida conforme a quantidade de geradores da sua frota ou exigências regulatórias específicas.
-            </p>
-            <a
-              href="https://wa.me/5545999299311?text=Olá,%20Iguaçu%20Geradores!%20Preciso%20de%20um%20contrato%20de%20manutenção%20personalizado%20com%20escopo%20sob%20medida."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-xs font-black text-brand-blue hover:text-brand-blue/80 transition-colors uppercase tracking-widest"
-            >
-              <span>Elaborar Plano Customizado</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </a>
-          </div>
-
         </div>
       </section>
 
@@ -1445,11 +1290,11 @@ export default function App() {
               },
               {
                 q: "Qual a diferença entre a manutenção preventiva e a corretiva?",
-                a: "A manutenção preventiva consiste em inspeções periódicas programadas (mensais ou semanais) para troca de óleos, filtros de ar/água, testes na bateria e simulações de falta de energia, garantindo que o gerador funcione perfeitamente quando for acionado de surpresa. A manutenção corretiva é realizada após o surgimento de uma falha para consertar ou substituir componentes danificados de forma emergencial."
+                a: "A manutenção preventiva consiste em inspeções programadas para troca de oleo lubrificante, filtros de combustivel, oleo e ar e verificação de componentes eletricos, e simulação de falta de energia, garantindo que o gerador funcione perfeitamente quando for acionado de surpresa. A manutenção corretiva é realizada após o surgimento de uma falha para consertar ou substituir componentes danificados de forma emergencial."
               },
               {
                 q: "Vocês enviam peças de gerador para todo o Brasil?",
-                a: "Sim, enviamos toda a nossa linha de peças de reposição (como controladores Deep Sea, disjuntores, filtros Baudouin, aditivos e componentes WEG) via transportadoras rápidas ou Correios para qualquer estado do Brasil, com rastreamento completo."
+                a: "Sim, enviamos toda a nossa linha de peças de reposição via transportadoras rápidas ou Correios para qualquer estado do Brasil, com rastreamento completo."
               },
               {
                 q: "Como escolher o tamanho/potência correto do gerador para a minha empresa?",
