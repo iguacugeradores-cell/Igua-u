@@ -75,8 +75,8 @@ export default function App() {
   // Hero Slides
   const heroSlides = [
     {
-      title: 'Energia Ininterrupta para Empresas, Indústrias, Agronegócio e Residências',
-      subtitle: 'Venda de grupos geradores conforme dimensionamento técnico, podendo ser personalizado com cabines silenciadas com tecnologia de ponta e instalação completa.',
+      title: 'Energia Confiável Onde Você Precisa',
+      subtitle: 'Soluções completas em grupos geradores para empresas, indústrias, propriedades rurais e residências. Realizamos o dimensionamento técnico, fornecimento, instalação e suporte especializado, garantindo desempenho, segurança e tranquilidade para manter sua operação funcionando sem interrupções.',
       badge: 'DIMENSIONAMENTO E INSTALAÇÃO COMPLETA',
       buttonText: 'Solicitar Cotação de Gerador',
       actionCategory: 'geradores',
@@ -97,8 +97,8 @@ export default function App() {
       bgGradient: 'from-brand-dark via-brand-blue to-slate-900',
     },
     {
-      title: 'Peças Originais e Kits de Revisão de Todas as Marcas',
-      subtitle: 'Filtros Baudouin, Controladores Deep Sea, Disjuntores Chint, Reguladores de Tensão WEG e muito mais.',
+      title: 'Peças e Soluções Técnicas para Manter sua Energia Ativa',
+      subtitle: 'Conte com a Iguaçu Geradores no fornecimento de peças, componentes e kits de manutenção para grupos geradores de diferentes marcas e aplicações. Produtos selecionados para garantir confiabilidade, desempenho e segurança no funcionamento do seu equipamento.',
       badge: 'ESTOQUE COMPLETO A PRONTA ENTREGA',
       buttonText: 'Ver Catálogo de Peças',
       actionCategory: 'revisao',
