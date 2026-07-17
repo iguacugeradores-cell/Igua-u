@@ -1029,7 +1029,10 @@ export default function App() {
                 <div>
                   <h4 className="font-bold text-slate-800 text-sm">Manutenções Preventivas Programadas</h4>
                   <p className="text-xs text-slate-500 leading-relaxed">
-                    Realizamos planos de manutenção preventiva personalizados, desenvolvidos conforme a necessidade de cada cliente e a criticidade da operação. A periodicidade pode ser semanal, quinzenal, mensal ou conforme um cronograma específico, garantindo maior confiabilidade, desempenho e vida útil do grupo gerador.
+                    Realizamos planos de manutenção preventiva personalizados, definidos conforme a necessidade de cada cliente, modelo do equipamento e importância da aplicação. As visitas técnicas são programadas normalmente em períodos mensais, trimestrais ou semestrais, podendo ser ajustadas conforme o ambiente de operação e as recomendações do fabricante.
+                  </p>
+                  <p className="text-xs text-slate-500 leading-relaxed mt-1.5">
+                    Nosso objetivo é garantir maior confiabilidade, segurança, desempenho e prolongar a vida útil do grupo gerador, reduzindo riscos de falhas e paradas inesperadas.
                   </p>
                 </div>
               </div>
@@ -1049,8 +1052,8 @@ export default function App() {
                   <Check className="w-3.5 h-3.5 stroke-[3px]" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-slate-800 text-sm">Suporte na Instalação de Quadros QTA</h4>
-                  <p className="text-xs text-slate-500">Desenvolvimento, montagem e comissionamento de painéis automáticos para transferência sem atraso.</p>
+                  <h4 className="font-bold text-slate-800 text-sm">Quadros QTA e Sistemas de Transferência Automática</h4>
+                  <p className="text-xs text-slate-500">Projetamos, instalamos e realizamos o comissionamento de quadros QTA para acionamento automático do grupo gerador, garantindo uma transferência rápida, segura e eficiente em casos de falta de energia.</p>
                 </div>
               </div>
             </div>
