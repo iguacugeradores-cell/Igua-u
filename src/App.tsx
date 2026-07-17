@@ -83,10 +83,16 @@ export default function App() {
       bgGradient: 'from-brand-blue via-brand-blue/90 to-brand-dark',
     },
     {
-      title: 'Plantão Técnico 24h & Manutenção Preventiva/Corretiva',
-      subtitle: 'Contratos corporativos mensais e atendimento de emergência ágil para evitar prejuízos na falta de energia.',
+      title: 'Seu Gerador Sempre Pronto para Operar',
+      subtitle: (
+        <span className="block space-y-1.5 font-normal">
+          <span className="flex items-center gap-2">✔ Contratos de manutenção personalizados</span>
+          <span className="flex items-center gap-2">✔ Manutenções preventivas programadas</span>
+          <span className="flex items-center gap-2">✔ Atendimento corretivo especializado.</span>
+        </span>
+      ),
       badge: 'SUPORTE TÉCNICO ESPECIALIZADO 24H',
-      buttonText: 'Falar com Técnico de Plantão',
+      buttonText: 'Atendimento Especializado',
       actionCategory: 'servicos',
       bgGradient: 'from-brand-dark via-brand-blue to-slate-900',
     },
