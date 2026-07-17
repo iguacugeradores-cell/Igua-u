@@ -875,12 +875,8 @@ export default function App() {
                       <div className="mt-4 pt-4 border-t border-slate-100">
                         {product.isConsultation ? (
                           <div className="mb-4">
-                            <span className="text-slate-500 text-xs block font-medium">Equipamento ou Serviço Especial</span>
-                            <span className="text-brand-blue text-base font-extrabold tracking-tight block uppercase mt-0.5">
-                              Produto Sob Consulta
-                            </span>
-                            <span className="text-[10px] text-slate-400 block mt-0.5">
-                              Dimensionamento comercial dedicado
+                            <span className="text-brand-blue text-sm font-bold bg-slate-100 px-3 py-1.5 rounded-lg inline-block uppercase tracking-wider">
+                              Sob Consulta
                             </span>
                           </div>
                         ) : (
@@ -922,30 +918,32 @@ export default function App() {
                             id={`btn-whatsapp-${product.id}`}
                           >
                             <MessageSquare className="w-4 h-4 fill-current shrink-0" />
-                            <span>Atendimento Imediato</span>
+                            <span>{product.isConsultation ? 'Atendimento Especializado' : 'Atendimento Imediato'}</span>
                           </a>
 
-                          <button
-                            onClick={() => handleAddToQuote(product)}
-                            className={`w-full py-2 px-3 rounded-xl text-xs font-semibold flex items-center justify-center gap-1.5 transition-all ${
-                              cart.some(item => item.product.id === product.id)
-                                ? 'bg-slate-100 text-brand-blue border border-slate-200'
-                                : 'bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-slate-900 border border-slate-200/60'
-                            }`}
-                            id={`btn-quote-${product.id}`}
-                          >
-                            {cart.some(item => item.product.id === product.id) ? (
-                              <>
-                                <Check className="w-3.5 h-3.5 text-brand-blue" />
-                                <span>Adicionado ({cart.find(item => item.product.id === product.id)?.quantity})</span>
-                              </>
-                            ) : (
-                              <>
-                                <Plus className="w-3.5 h-3.5" />
-                                <span>Adicionar ao Orçamento</span>
-                              </>
-                            )}
-                          </button>
+                          {!product.isConsultation && (
+                            <button
+                              onClick={() => handleAddToQuote(product)}
+                              className={`w-full py-2 px-3 rounded-xl text-xs font-semibold flex items-center justify-center gap-1.5 transition-all ${
+                                cart.some(item => item.product.id === product.id)
+                                  ? 'bg-slate-100 text-brand-blue border border-slate-200'
+                                  : 'bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-slate-900 border border-slate-200/60'
+                              }`}
+                              id={`btn-quote-${product.id}`}
+                            >
+                              {cart.some(item => item.product.id === product.id) ? (
+                                <>
+                                  <Check className="w-3.5 h-3.5 text-brand-blue" />
+                                  <span>Adicionado ({cart.find(item => item.product.id === product.id)?.quantity})</span>
+                                </>
+                              ) : (
+                                <>
+                                  <Plus className="w-3.5 h-3.5" />
+                                  <span>Adicionar ao Orçamento</span>
+                                </>
+                              )}
+                            </button>
+                          )}
                         </div>
                       </div>
                     </div>

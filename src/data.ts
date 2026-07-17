@@ -303,35 +303,6 @@ export const PRODUCTS: Product[] = [
     isConsultation: true,
     description: 'Assegure o pleno funcionamento do seu gerador quando a energia faltar! Visitas regulares.',
     imageUrl: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=500&auto=format&fit=crop&q=60'
-  },
-  {
-    id: 'servico-corretiva',
-    name: 'Manutenção Corretiva Emergencial & Plantão 24h',
-    category: 'servicos',
-    brand: 'Iguaçu',
-    price: 0,
-    discountPrice: 0,
-    installments: 0,
-    installmentValue: 0,
-    rating: 5,
-    tag: 'destaque',
-    isConsultation: true,
-    description: 'Seu gerador parou no meio de uma emergência? Nossa equipe técnica altamente especializada está de prontidão 24 horas por dia, 7 dias por semana para te atender no local imediatamente.',
-    imageUrl: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=500&auto=format&fit=crop&q=60'
-  },
-  {
-    id: 'servico-instalacao-qta',
-    name: 'Instalação e Programação de QTA (Quadro de Transferência)',
-    category: 'servicos',
-    brand: 'Iguaçu',
-    price: 1200.00,
-    discountPrice: 1140.00,
-    installments: 6,
-    installmentValue: 200.00,
-    rating: 5,
-    tag: 'normal',
-    description: 'Instalação técnica profissional de quadros de comando automático. Garante que seu gerador assuma a carga do estabelecimento em até 8 segundos após a queda de energia da concessionária.',
-    imageUrl: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=500&auto=format&fit=crop&q=60'
   }
 ];
 
