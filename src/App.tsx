@@ -960,28 +960,41 @@ export default function App() {
       {/* 8. BRANDS LOGO GRID SECTION */}
       <section className="py-14 px-4 bg-slate-50 border-t border-b border-slate-200/50">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-10">
-            <span className="text-brand-blue text-xs font-bold tracking-widest uppercase block mb-2">Parceiros Globais</span>
-            <h2 className="text-xl md:text-2xl font-extrabold text-slate-900 uppercase tracking-tight leading-none font-heading">
-              Trabalhamos com as Maiores Marcas de Geradores
+          <div className="text-center max-w-3xl mx-auto mb-10">
+            <span className="text-brand-blue text-xs font-bold tracking-widest uppercase block mb-2">Multimarcas</span>
+            <h2 className="text-xl md:text-2xl font-extrabold text-slate-900 uppercase tracking-tight leading-snug font-heading mb-3">
+              Especialistas em Diversas Marcas de Grupos Geradores
             </h2>
+            <p className="text-xs md:text-sm text-slate-500 font-medium">
+              Atuamos com equipamentos e soluções das principais fabricantes do mercado, garantindo suporte técnico, manutenção e fornecimento de peças para diferentes marcas e modelos.
+            </p>
           </div>
           
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-8">
-            {BRANDS.map((brand, i) => (
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4">
+            {[
+              { name: 'WEG', filterKey: 'WEG' },
+              { name: 'Baudouin', filterKey: 'Baudouin' },
+              { name: 'DSE', filterKey: 'DSE' },
+              { name: 'Iveco FPT', filterKey: 'all' },
+              { name: 'Scania', filterKey: 'all' },
+              { name: 'Volvo Penta', filterKey: 'all' },
+              { name: 'Cummins', filterKey: 'all' },
+              { name: 'Perkins', filterKey: 'all' }
+            ].map((brand, i) => (
               <div 
                 key={i} 
                 onClick={() => {
-                  setSelectedBrand(brand.name);
+                  if (brand.filterKey !== 'all') {
+                    setSelectedBrand(brand.filterKey);
+                  } else {
+                    setSelectedBrand('all');
+                  }
                   scrollToSection('catalogo');
                 }}
-                className="bg-white rounded-xl p-5 border border-slate-200/60 hover:border-brand-blue/30 shadow-sm hover:shadow-md text-center transition-all cursor-pointer group"
+                className="bg-white rounded-xl p-6 border border-slate-200/60 hover:border-brand-blue/30 shadow-sm hover:shadow-md text-center transition-all cursor-pointer group flex flex-col justify-center items-center min-h-[90px]"
               >
-                <div className="font-heading font-black text-lg text-slate-700 tracking-tighter group-hover:text-brand-blue group-hover:scale-105 transition-all">
-                  {brand.logoText}
-                </div>
-                <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mt-1.5">
-                  {brand.subtitle}
+                <div className="font-heading font-black text-sm md:text-base text-slate-700 tracking-tight group-hover:text-brand-blue group-hover:scale-105 transition-all">
+                  {brand.name}
                 </div>
               </div>
             ))}
