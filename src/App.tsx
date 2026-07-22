@@ -35,7 +35,12 @@ import {
   Wrench, 
   Info,
   Send,
-  Zap
+  Zap,
+  Factory,
+  Sprout,
+  Building,
+  HeartPulse,
+  Home
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { PRODUCTS, CATEGORIES, BRANDS, TESTIMONIALS, Product } from './data';
@@ -75,10 +80,10 @@ export default function App() {
   // Hero Slides
   const heroSlides = [
     {
-      title: 'Energia Confiável Onde Você Precisa',
-      subtitle: 'Soluções completas em grupos geradores para empresas, indústrias, propriedades rurais e residências. Realizamos o dimensionamento técnico, fornecimento, instalação e suporte especializado, garantindo desempenho, segurança e tranquilidade para manter sua operação funcionando sem interrupções.',
-      badge: 'DIMENSIONAMENTO E INSTALAÇÃO COMPLETA',
-      buttonText: 'Solicitar Cotação de Gerador',
+      title: 'Sua Energia Não Pode Parar!',
+      subtitle: 'Soluções completas em grupos geradores para empresas, indústrias, agronegócio e residências. Energia confiável, venda com dimensionamento técnico preciso, instalação completa e suporte especializado.',
+      badge: 'ENERGIA CONFIÁVEL • OPERAÇÃO SEM PARADAS',
+      buttonText: 'Falar com Especialista',
       actionCategory: 'geradores',
       bgGradient: 'from-brand-blue via-brand-blue/90 to-brand-dark',
     },
@@ -262,7 +267,6 @@ export default function App() {
             </div>
           </div>
           <div className="hidden md:flex items-center gap-6">
-            <span className="flex items-center gap-1"><Truck className="w-4 h-4 text-brand-blue" /> ENVIOS DE PEÇAS PARA TODO O BRASIL</span>
             <span className="flex items-center gap-1"><CreditCard className="w-4 h-4 text-brand-blue" /> PARCELAMENTO EM ATÉ 12X</span>
           </div>
           <div className="flex items-center gap-1">
@@ -511,15 +515,30 @@ export default function App() {
       </AnimatePresence>
 
       {/* 4. HERO SECTION WITH CAROUSEL */}
-      <section className="relative overflow-hidden bg-brand-dark min-h-[420px] md:min-h-[480px] lg:min-h-[520px] flex items-center" id="top">
-        {/* Background Visual Animations */}
-        <div className="absolute inset-0 z-0 opacity-20">
-          <div className="absolute top-10 left-10 w-72 h-72 rounded-full bg-brand-blue filter blur-[120px] animate-pulse"></div>
-          <div className="absolute bottom-10 right-10 w-96 h-96 rounded-full bg-brand-red filter blur-[150px] animate-pulse"></div>
+      <section className="relative overflow-hidden bg-brand-dark min-h-[520px] lg:min-h-[620px] flex items-center" id="top">
+        {/* Background Visual Animations & Generated Image for Slide 0 */}
+        <div className="absolute inset-0 z-0 transition-all duration-700">
+          {activeSlide === 0 ? (
+            <>
+              <img
+                src="https://i.postimg.cc/50TLPv7L/Whats-App-Image-2026-07-22-at-15-05-58.jpg"
+                alt="Iguaçu Geradores Capa"
+                className="w-full h-full object-cover object-center opacity-45 lg:opacity-55"
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/95 to-brand-dark/50 lg:via-brand-dark/90 lg:to-transparent"></div>
+            </>
+          ) : (
+            <>
+              <div className="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-blue/10 to-brand-dark opacity-30"></div>
+              <div className="absolute top-10 left-10 w-72 h-72 rounded-full bg-brand-blue filter blur-[120px] animate-pulse"></div>
+              <div className="absolute bottom-10 right-10 w-96 h-96 rounded-full bg-brand-red filter blur-[150px] animate-pulse"></div>
+            </>
+          )}
         </div>
 
         {/* Carousel Content */}
-        <div className="max-w-7xl mx-auto px-4 py-12 md:py-20 relative z-10 w-full">
+        <div className="max-w-7xl mx-auto px-4 py-12 md:py-16 lg:py-20 relative z-10 w-full">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeSlide}
@@ -527,39 +546,162 @@ export default function App() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5 }}
-              className="max-w-3xl text-left"
+              className="w-full text-left"
             >
-              <span className="inline-block bg-brand-red text-slate-900 text-[11px] md:text-xs font-extrabold px-3 py-1.5 rounded-full uppercase tracking-widest mb-6 border border-brand-red/30 shadow-md">
-                {heroSlides[activeSlide].badge}
-              </span>
-              <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.1] mb-6 font-heading">
-                {heroSlides[activeSlide].title}
-              </h1>
-              <p className="text-slate-300 text-base md:text-lg lg:text-xl font-light mb-8 max-w-2xl leading-relaxed">
-                {heroSlides[activeSlide].subtitle}
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
-                <button
-                  onClick={() => {
-                    setSelectedCategory(heroSlides[activeSlide].actionCategory);
-                    scrollToSection('catalogo');
-                  }}
-                  className="bg-brand-red text-slate-900 hover:bg-brand-red/95 px-8 py-4 rounded-xl text-sm md:text-base font-extrabold shadow-lg shadow-brand-red/20 hover:shadow-brand-red/45 transition-all text-center flex items-center justify-center gap-2 group cursor-pointer"
-                >
-                  <span>{heroSlides[activeSlide].buttonText}</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
-                <a
-                  href="https://wa.me/5545999299311?text=Olá,%20Iguaçu%20Geradores!%20Gostaria%20de%20falar%20com%20um%20especialista%20sobre%20geradores."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-white/10 hover:bg-white/15 text-white border border-white/20 hover:border-white/40 px-8 py-4 rounded-xl text-sm md:text-base font-bold transition-all text-center flex items-center justify-center gap-2"
-                >
-                  <MessageSquare className="w-5 h-5 fill-current text-green-400" />
-                  Atendimento WhatsApp
-                </a>
-              </div>
+              {activeSlide === 0 ? (
+                /* CUSTOM FLIER LAYOUT FOR SLIDE 0 */
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                  <div className="lg:col-span-7 space-y-6">
+                    {/* Badge */}
+                    <div className="inline-flex items-center gap-2 bg-brand-red text-slate-900 text-[10px] md:text-xs font-black px-4 py-2 rounded-full uppercase tracking-widest shadow-md border border-brand-red/20">
+                      <Zap className="w-3.5 h-3.5 fill-current text-slate-900 shrink-0 animate-pulse" />
+                      <span>{heroSlides[0].badge}</span>
+                    </div>
+
+                    {/* Headline */}
+                    <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.05] font-heading uppercase">
+                      Sua Energia <span className="text-brand-red font-black">Não Pode Parar!</span>
+                    </h1>
+
+                    {/* Slogan */}
+                    <p className="text-slate-300 text-sm md:text-base lg:text-lg font-light leading-relaxed max-w-2xl border-l-4 border-brand-red pl-3 bg-brand-dark/40 py-1.5 rounded-r-lg">
+                      {heroSlides[0].subtitle}
+                    </p>
+
+                    {/* 4 Pillars Grid */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1 max-w-2xl">
+                      {[
+                        { title: 'Energia Contínua', desc: 'Mais segurança para sua operação' },
+                        { title: 'Equipamentos de Qualidade', desc: 'Alta performance e confiabilidade' },
+                        { title: 'Suporte Especializado', desc: 'Atendimento rápido e eficiente' },
+                        { title: 'Plantão 24h', desc: 'Atendimento sempre que precisar' }
+                      ].map((pillar, index) => (
+                        <div key={index} className="flex gap-2.5 items-start bg-brand-dark/60 p-3 rounded-xl border border-white/5 backdrop-blur-xs">
+                          <div className="w-5 h-5 bg-brand-red/20 text-brand-red rounded-full flex items-center justify-center shrink-0 mt-0.5">
+                            <Check className="w-3.5 h-3.5 stroke-[3px]" />
+                          </div>
+                          <div>
+                            <h4 className="font-bold text-white text-xs md:text-sm uppercase tracking-wide">{pillar.title}</h4>
+                            <p className="text-[10px] md:text-xs text-slate-400 mt-0.5 leading-tight">{pillar.desc}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Yellow Ribbon */}
+                    <div className="bg-brand-red text-slate-900 py-3 px-4 rounded-xl text-xs md:text-sm font-black flex items-center gap-2 tracking-wide uppercase shadow-lg border-l-4 border-brand-blue animate-pulse-gentle">
+                      <Shield className="w-4 h-4 fill-current shrink-0" />
+                      <span>Projetos Personalizados de Acordo com sua Necessidade</span>
+                    </div>
+
+                    {/* CTA Buttons */}
+                    <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                      <a
+                        href="https://wa.me/5545999979650?text=Olá!%20Gostaria%20de%20falar%20com%20um%20especialista%20da%20Iguaçu%20Geradores%20para%20dimensionar%20um%20projeto."
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-brand-green hover:bg-green-600 text-white font-black px-7 py-4 rounded-xl text-xs uppercase tracking-wider shadow-lg transition-all text-center flex items-center justify-center gap-2 group cursor-pointer"
+                      >
+                        <MessageSquare className="w-4.5 h-4.5 fill-current text-white shrink-0" />
+                        <span>Atendimento Especializado</span>
+                      </a>
+                      <button
+                        onClick={() => {
+                          setSelectedCategory('geradores');
+                          scrollToSection('catalogo');
+                        }}
+                        className="bg-white/10 hover:bg-white/15 text-white border border-white/20 hover:border-white/40 px-7 py-4 rounded-xl text-xs font-bold uppercase tracking-wider transition-all text-center flex items-center justify-center gap-2 cursor-pointer"
+                      >
+                        <Package className="w-4.5 h-4.5" />
+                        <span>Ver Geradores</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Sectors side panel / cards for Slide 0 */}
+                  <div className="lg:col-span-5 space-y-4">
+                    <div className="bg-brand-dark/70 border border-white/10 backdrop-blur-md rounded-2xl p-5 shadow-2xl">
+                      <h3 className="text-xs font-black text-brand-red uppercase tracking-widest mb-3.5 flex items-center gap-1.5 border-b border-white/10 pb-2">
+                        <SlidersHorizontal className="w-3.5 h-3.5 text-brand-red" />
+                        <span>Selecione seu Segmento</span>
+                      </h3>
+                      <div className="space-y-2.5">
+                        {[
+                          { name: 'INDÚSTRIAS', icon: Factory, text: 'Garantia de produção contínua sem paradas técnicas.' },
+                          { name: 'AGRONEGÓCIO', icon: Sprout, text: 'Segurança energética para aviários, pivôs e ordenhas.' },
+                          { name: 'EMPRESAS E COMÉRCIOS', icon: Building, text: 'Proteção contra apagões e perdas no faturamento.' },
+                          { name: 'HOSPITAIS E CLÍNICAS', icon: HeartPulse, text: 'Segurança absoluta para a vida e equipamentos críticos.' },
+                          { name: 'RESIDÊNCIAS E CONDOMÍNIOS', icon: Home, text: 'Conforto e funcionamento ininterrupto de elevadores e portões.' }
+                        ].map((sector, index) => {
+                          const IconComp = sector.icon;
+                          return (
+                            <button
+                              key={index}
+                              onClick={() => {
+                                setLeadMessage('Olá! Gostaria de falar com um especialista sobre soluções de grupos geradores personalizadas.');
+                                scrollToSection('servicos-info');
+                                setTimeout(() => {
+                                  const formEl = document.getElementById('lead-form-name');
+                                  if (formEl) formEl.focus();
+                                }, 800);
+                              }}
+                              className="w-full text-left bg-white/5 hover:bg-brand-red/10 hover:border-brand-red/40 border border-white/5 p-3 rounded-xl transition-all flex items-center gap-3 group cursor-pointer"
+                            >
+                              <div className="w-9 h-9 bg-brand-blue/30 text-brand-red rounded-lg flex items-center justify-center shrink-0 group-hover:bg-brand-red group-hover:text-slate-950 transition-all border border-brand-red/10 shadow-sm">
+                                <IconComp className="w-4.5 h-4.5" />
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <div className="text-xs font-black text-white tracking-wide uppercase group-hover:text-brand-red transition-all flex items-center justify-between">
+                                  <span>{sector.name}</span>
+                                  <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
+                                </div>
+                                <p className="text-[10px] text-slate-400 mt-0.5 leading-tight group-hover:text-slate-300 transition-all truncate">
+                                  {sector.text}
+                                </p>
+                              </div>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                /* STANDARD SLIDE LAYOUT FOR SLIDES 1 & 2 */
+                <div className="max-w-3xl space-y-6 py-6">
+                  <span className="inline-block bg-brand-red text-slate-900 text-[11px] md:text-xs font-extrabold px-3 py-1.5 rounded-full uppercase tracking-widest border border-brand-red/30 shadow-md">
+                    {heroSlides[activeSlide].badge}
+                  </span>
+                  <h2 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.1] font-heading uppercase">
+                    {heroSlides[activeSlide].title}
+                  </h2>
+                  <div className="text-slate-300 text-sm md:text-base lg:text-lg font-light leading-relaxed max-w-2xl">
+                    {heroSlides[activeSlide].subtitle}
+                  </div>
+                  
+                  <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center pt-2">
+                    <button
+                      onClick={() => {
+                        setSelectedCategory(heroSlides[activeSlide].actionCategory);
+                        scrollToSection('catalogo');
+                      }}
+                      className="bg-brand-red text-slate-900 hover:bg-brand-red/95 px-8 py-4 rounded-xl text-sm md:text-base font-extrabold shadow-lg shadow-brand-red/20 hover:shadow-brand-red/45 transition-all text-center flex items-center justify-center gap-2 group cursor-pointer"
+                    >
+                      <span>{heroSlides[activeSlide].buttonText}</span>
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </button>
+                    <a
+                      href="https://wa.me/5545999299311?text=Olá,%20Iguaçu%20Geradores!%20Gostaria%20de%20falar%20com%20um%20especialista%20sobre%20geradores."
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-white/10 hover:bg-white/15 text-white border border-white/20 hover:border-white/40 px-8 py-4 rounded-xl text-sm md:text-base font-bold transition-all text-center flex items-center justify-center gap-2"
+                    >
+                      <MessageSquare className="w-5 h-5 fill-current text-green-400" />
+                      <span>Atendimento WhatsApp</span>
+                    </a>
+                  </div>
+                </div>
+              )}
             </motion.div>
           </AnimatePresence>
 
@@ -604,7 +746,7 @@ export default function App() {
             </div>
             <div>
               <h3 className="font-bold text-slate-800 text-sm md:text-base leading-tight">LOGÍSTICA AGILIZADA</h3>
-              <p className="text-xs text-slate-500 mt-0.5">Envio de peças e acessórios para todo o território nacional.</p>
+              <p className="text-xs text-slate-500 mt-0.5">Retirada rápida ou entrega ágil de peças e acessórios.</p>
             </div>
           </div>
 
@@ -833,10 +975,19 @@ export default function App() {
                     <div className="relative bg-slate-100 h-48 flex items-center justify-center overflow-hidden border-b border-slate-100 shrink-0">
                       <div className="absolute inset-0 bg-gradient-to-tr from-brand-blue/5 to-slate-200/10 z-0"></div>
                       
-                      {/* Product Specific Vector graphics */}
-                      <div className="relative z-10 w-24 h-24 text-brand-blue/80 group-hover:scale-105 transition-transform duration-300">
-                        <ProductVisual category={product.category} id={product.id} />
-                      </div>
+                      {product.category === 'geradores' ? (
+                        <img 
+                          src="https://i.postimg.cc/cHVLqJMf/Whats-App-Image-2026-07-16-at-14-51-07.jpg"
+                          alt={product.name}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 relative z-10"
+                          referrerPolicy="no-referrer"
+                        />
+                      ) : (
+                        /* Product Specific Vector graphics */
+                        <div className="relative z-10 w-24 h-24 text-brand-blue/80 group-hover:scale-105 transition-transform duration-300">
+                          <ProductVisual category={product.category} id={product.id} />
+                        </div>
+                      )}
 
                       {/* Small hover specs detail container */}
                       <div className="absolute inset-x-0 bottom-0 bg-slate-900/90 text-white p-3 text-xs translate-y-full group-hover:translate-y-0 transition-all duration-300 z-10 font-light backdrop-blur-sm line-clamp-3">
@@ -1006,31 +1157,30 @@ export default function App() {
         <div className="absolute top-1/2 left-0 w-80 h-80 rounded-full bg-brand-blue/5 filter blur-[100px] pointer-events-none"></div>
         <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-brand-red/5 filter blur-[100px] pointer-events-none"></div>
 
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
           
           {/* Left Text Detail */}
-          <div className="space-y-6">
-            <span className="text-brand-blue text-xs font-bold tracking-widest uppercase block">Energia Sem Interrupções</span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight font-heading">
-              Energia Ininterrupta para Empresas, Indústrias, Agronegócio e Residências
-            </h2>
-            <p className="text-slate-600 text-sm md:text-base leading-relaxed">
+          <div className="lg:col-span-5 space-y-6 flex flex-col justify-center">
+            <div>
+              <span className="text-brand-blue text-xs font-bold tracking-widest uppercase block">Energia Sem Interrupções</span>
+              <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight leading-tight font-heading mt-1">
+                Energia Ininterrupta para Empresas, Indústrias, Agronegócio e Residências
+              </h2>
+            </div>
+            <p className="text-slate-600 text-xs md:text-sm leading-relaxed">
               A <strong className="font-bold text-brand-blue">Iguaçu Geradores</strong> é referência na venda de grupos geradores conforme dimensionamento técnico preciso, projetados sob medida para a sua demanda. Oferecemos grupos geradores personalizados, com ou sem cabine, dimensionados de acordo com a necessidade de cada cliente. Trabalhamos com equipamentos de alta qualidade e realizamos a instalação completa, do projeto à entrega.
             </p>
 
             {/* List of guarantees */}
-            <div className="space-y-4 pt-2">
+            <div className="space-y-4 pt-1 flex-1">
               <div className="flex gap-3">
                 <div className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center shrink-0 mt-0.5">
                   <Check className="w-3.5 h-3.5 stroke-[3px]" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-slate-800 text-sm">Manutenções Preventivas Programadas</h4>
-                  <p className="text-xs text-slate-500 leading-relaxed">
-                    Realizamos planos de manutenção preventiva personalizados, definidos conforme a necessidade de cada cliente, modelo do equipamento e importância da aplicação. As visitas técnicas são programadas normalmente em períodos mensais, trimestrais ou semestrais, podendo ser ajustadas conforme o ambiente de operação e as recomendações do fabricante.
-                  </p>
-                  <p className="text-xs text-slate-500 leading-relaxed mt-1.5">
-                    Nosso objetivo é garantir maior confiabilidade, segurança, desempenho e prolongar a vida útil do grupo gerador, reduzindo riscos de falhas e paradas inesperadas.
+                  <h4 className="font-bold text-slate-800 text-xs uppercase tracking-wide">Manutenções Preventivas Programadas</h4>
+                  <p className="text-[11px] text-slate-500 leading-relaxed mt-0.5">
+                    Realizamos planos de manutenção preventiva personalizados, definidos conforme a necessidade de cada cliente, modelo do equipamento e importância da aplicação.
                   </p>
                 </div>
               </div>
@@ -1040,8 +1190,8 @@ export default function App() {
                   <Check className="w-3.5 h-3.5 stroke-[3px]" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-slate-800 text-sm">Plantão de Emergência 24 Horas</h4>
-                  <p className="text-xs text-slate-500">Atendimento rápido em todo o estado para solucionar panes elétricas ou falhas na inicialização do gerador.</p>
+                  <h4 className="font-bold text-slate-800 text-xs uppercase tracking-wide">Plantão de Emergência 24 Horas</h4>
+                  <p className="text-[11px] text-slate-500 mt-0.5">Atendimento rápido em todo o estado para solucionar panes elétricas ou falhas na inicialização do gerador.</p>
                 </div>
               </div>
 
@@ -1050,35 +1200,67 @@ export default function App() {
                   <Check className="w-3.5 h-3.5 stroke-[3px]" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-slate-800 text-sm">Quadros QTA e Sistemas de Transferência Automática</h4>
-                  <p className="text-xs text-slate-500">Projetamos, instalamos e realizamos o comissionamento de quadros QTA para acionamento automático do grupo gerador, garantindo uma transferência rápida, segura e eficiente em casos de falta de energia.</p>
+                  <h4 className="font-bold text-slate-800 text-xs uppercase tracking-wide">Sistemas de Transferência Automática (QTA)</h4>
+                  <p className="text-[11px] text-slate-500 mt-0.5">Projetamos, instalamos e comissionamos quadros QTA para acionamento automático, garantindo transferência rápida e segura.</p>
                 </div>
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-4 pt-4">
+            <div className="flex flex-wrap gap-2.5 pt-3">
               <a
                 href="https://wa.me/5545999299311?text=Olá,%20Iguaçu%20Geradores!%20Gostaria%20de%20solicitar%20uma%20visita%20técnica%20de%20manutenção."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-brand-red text-slate-900 font-extrabold px-6 py-3.5 rounded-xl text-sm shadow-md hover:bg-brand-red/90 transition-all flex items-center gap-2 cursor-pointer"
+                className="bg-brand-red text-slate-900 font-extrabold px-5 py-3 rounded-xl text-xs shadow-sm hover:bg-brand-red/90 transition-all flex items-center gap-1.5 cursor-pointer"
               >
-                <Wrench className="w-4 h-4 text-slate-900" />
-                Agendar Visita Técnica
+                <Wrench className="w-3.5 h-3.5 text-slate-900" />
+                Agendar Visita
               </a>
               <button
                 onClick={() => {
                   scrollToSection('contratos-manutencao');
                 }}
-                className="bg-slate-100 text-slate-700 font-bold px-6 py-3.5 rounded-xl text-sm hover:bg-slate-200 transition-all"
+                className="bg-slate-100 text-slate-700 font-bold px-5 py-3 rounded-xl text-xs hover:bg-slate-200 transition-all"
               >
-                Ver Contratos de Manutenção
+                Contratos de Manutenção
               </button>
             </div>
           </div>
 
+          {/* Center Flyer Image Column */}
+          <div className="lg:col-span-3 flex flex-col justify-center">
+            <div className="relative group overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-2 shadow-md transition-all hover:shadow-xl hover:border-brand-blue/30 h-full flex flex-col justify-between">
+              <div className="relative overflow-hidden rounded-xl aspect-[3/4.2] bg-slate-50 flex-1">
+                <img 
+                  src="https://i.postimg.cc/50TLPv7L/Whats-App-Image-2026-07-22-at-15-05-58.jpg" 
+                  alt="Iguaçu Geradores - Nosso Trabalho"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-60 group-hover:opacity-45 transition-opacity"></div>
+                <div className="absolute bottom-3 left-3 right-3 text-white">
+                  <span className="text-[9px] font-black bg-brand-red text-slate-900 px-2 py-0.5 rounded-full uppercase tracking-widest inline-block mb-1">
+                    Trabalho Real
+                  </span>
+                  <p className="text-xs font-black leading-tight uppercase tracking-wide">Assistência & Projetos</p>
+                </div>
+              </div>
+              <div className="pt-2.5 pb-1 px-1 flex items-center justify-between shrink-0">
+                <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Panfleto Oficial</span>
+                <a 
+                  href="https://i.postimg.cc/50TLPv7L/Whats-App-Image-2026-07-22-at-15-05-58.jpg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[10px] font-black text-brand-blue hover:underline uppercase tracking-wider flex items-center gap-0.5"
+                >
+                  Ver Ampliado ↗
+                </a>
+              </div>
+            </div>
+          </div>
+
           {/* Right Lead Form Container */}
-          <div className="bg-white rounded-3xl p-6 md:p-8 border border-slate-200/70 shadow-lg relative">
+          <div className="lg:col-span-4 bg-white rounded-3xl p-6 border border-slate-200/70 shadow-lg relative flex flex-col justify-center">
             <div className="absolute top-4 right-4 bg-brand-blue/10 text-brand-blue text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
               Plantão Ativo
             </div>
@@ -1151,6 +1333,7 @@ export default function App() {
                 <div>
                   <label className="text-xs font-bold text-slate-500 uppercase block mb-1">Seu Nome / Razão Social *</label>
                   <input
+                    id="lead-form-name"
                     type="text"
                     required
                     placeholder="Ex: João da Silva / Hospital Central"
@@ -1187,6 +1370,7 @@ export default function App() {
                 <div>
                   <label className="text-xs font-bold text-slate-500 uppercase block mb-1">Descreva sua Necessidade</label>
                   <textarea
+                    id="lead-form-message"
                     rows={3}
                     placeholder="Ex: Preciso de cotação de filtros para gerador Baudouin de 150kva, ou agendar preventivo."
                     value={leadMessage}
@@ -1389,7 +1573,7 @@ export default function App() {
             </h3>
             <ul className="space-y-3 text-xs text-slate-400 font-medium">
               <li><button onClick={() => scrollToSection('top')} className="hover:text-white transition-colors">Sobre a Empresa</button></li>
-              <li><button onClick={() => scrollToSection('catalogo')} className="hover:text-white transition-colors">Política de Envio de Peças</button></li>
+              <li><button onClick={() => scrollToSection('catalogo')} className="hover:text-white transition-colors">Catálogo de Peças</button></li>
               <li><button onClick={() => scrollToSection('faq')} className="hover:text-white transition-colors">Garantia & Devoluções</button></li>
               <li><button onClick={() => { setSelectedCategory('geradores'); scrollToSection('catalogo'); }} className="hover:text-white transition-colors">Grupos Geradores Novos</button></li>
               <li><button onClick={() => { setSelectedCategory('servicos'); scrollToSection('catalogo'); }} className="hover:text-white transition-colors">Revisão e Manutenção</button></li>
@@ -1426,10 +1610,7 @@ export default function App() {
                 <strong>Horário Administrativo:</strong><br />
                 Segunda a Sexta: 08h às 12h e 13:30 às 17:30
               </li>
-              <li className="text-green-400 font-semibold flex items-center gap-1.5 pt-1">
-                <span className="w-2 h-2 bg-green-400 rounded-full animate-ping inline-block"></span>
-                Técnicos de plantão aos finais de semana e feriados.
-              </li>
+
             </ul>
           </div>
 
@@ -1767,22 +1948,14 @@ export default function App() {
  */
 function ProductVisual({ category, id }: { category: string; id: string }) {
   if (category === 'geradores' || id.includes('gerador')) {
-    // Diesel Generator Visual
+    // Premium Diesel Generator Real Cover Image
     return (
-      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full text-slate-700">
-        <rect x="15" y="30" width="70" height="45" rx="4" fill="#e2e8f0" stroke="#0f3a60" strokeWidth="2.5" />
-        <rect x="25" y="40" width="20" height="25" rx="1.5" fill="#f8fafc" stroke="#64748b" strokeWidth="1.5" />
-        <line x1="30" y1="47" x2="40" y2="47" stroke="#94a3b8" strokeWidth="1.5" />
-        <line x1="30" y1="52" x2="40" y2="52" stroke="#94a3b8" strokeWidth="1.5" />
-        <line x1="30" y1="57" x2="35" y2="57" stroke="#94a3b8" strokeWidth="1.5" />
-        <rect x="52" y="40" width="22" height="18" rx="2" fill="#0f3a60" />
-        <circle cx="63" cy="49" r="3" fill="#38bdf8" />
-        <rect x="35" y="20" width="8" height="10" fill="#475569" />
-        <rect x="37" y="10" width="4" height="10" fill="#334155" />
-        <line x1="20" y1="75" x2="20" y2="82" stroke="#0f3a60" strokeWidth="3" />
-        <line x1="80" y1="75" x2="80" y2="82" stroke="#0f3a60" strokeWidth="3" />
-        <line x1="10" y1="82" x2="90" y2="82" stroke="#0f3a60" strokeWidth="3" />
-      </svg>
+      <img
+        src="https://i.postimg.cc/cHVLqJMf/Whats-App-Image-2026-07-16-at-14-51-07.jpg"
+        alt="Grupo Gerador"
+        className="w-full h-full object-cover rounded-md"
+        referrerPolicy="no-referrer"
+      />
     );
   }
 
