@@ -358,33 +358,6 @@ export default function App() {
           </div>
         </div>
 
-        {/* 3. HORIZONTAL MENU (CATEGORIES) DESKTOP */}
-        <nav className="bg-brand-blue text-white overflow-x-auto scrollbar-none border-t border-brand-blue/30" id="desktop-category-nav">
-          <div className="max-w-7xl mx-auto px-4 flex items-center justify-start lg:justify-between gap-1 md:gap-4 whitespace-nowrap text-xs md:text-sm font-semibold">
-            {CATEGORIES.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => {
-                  setSelectedCategory(category.id);
-                  scrollToSection('catalogo');
-                }}
-                className={`px-4 py-3 md:py-3.5 border-b-2 transition-all relative uppercase tracking-wider ${
-                  selectedCategory === category.id 
-                    ? 'border-brand-red text-white bg-white/5 font-bold' 
-                    : 'border-transparent text-slate-200 hover:text-white hover:bg-white/5'
-                }`}
-              >
-                {category.name}
-                {selectedCategory === category.id && (
-                  <motion.div 
-                    layoutId="activeCategory"
-                    className="absolute bottom-0 left-0 right-0 h-[3px] bg-brand-red" 
-                  />
-                )}
-              </button>
-            ))}
-          </div>
-        </nav>
       </header>
 
       {/* MOBILE SEARCH BAR REMOVED */}
@@ -421,28 +394,6 @@ export default function App() {
                   <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 text-slate-500 hover:text-brand-blue">
                     <X className="w-5 h-5" />
                   </button>
-                </div>
-
-                <div className="space-y-1">
-                  <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Categorias</p>
-                  {CATEGORIES.map((category) => (
-                    <button
-                      key={category.id}
-                      onClick={() => {
-                        setSelectedCategory(category.id);
-                        setIsMobileMenuOpen(false);
-                        scrollToSection('catalogo');
-                      }}
-                      className={`w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-all flex items-center justify-between ${
-                        selectedCategory === category.id
-                          ? 'bg-brand-blue text-white font-bold'
-                          : 'text-slate-600 hover:bg-slate-100'
-                      }`}
-                    >
-                      <span>{category.name}</span>
-                      <ArrowRight className="w-3.5 h-3.5 opacity-60" />
-                    </button>
-                  ))}
                 </div>
 
                 <div className="mt-8 border-t border-slate-100 pt-6 space-y-4">
