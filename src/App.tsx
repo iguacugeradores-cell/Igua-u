@@ -747,11 +747,11 @@ export default function App() {
                 </h2>
 
                 <p className="text-slate-600 text-sm md:text-base leading-relaxed">
-                  A <strong className="font-bold text-brand-blue">Iguaçu Geradores</strong> não trabalha com uma lista fixa de equipamentos padronizados. Entendemos que a segurança energética do seu patrimônio ou negócio exige uma solução dimensionada especificamente para as suas necessidades de carga e de infraestrutura.
+                  Desenvolvemos sistemas de geração de energia de 30 a 1000 kVA, com configurações personalizadas para cada aplicação. Os grupos geradores podem ser fornecidos em versão aberta ou com cabine acústica, dimensionada para atender requisitos de instalação, operação e controle de ruído.
                 </p>
 
                 <p className="text-slate-600 text-sm md:text-base leading-relaxed font-semibold">
-                  Realizamos o levantamento técnico detalhado e desenvolvemos projetos totalmente personalizados (cabinados e silenciados de alta performance ou abertos para salas dedicadas) para atender perfeitamente aos seguintes setores:
+                  A <strong className="font-bold text-brand-blue">Iguaçu Geradores</strong> não trabalha com uma lista fixa de equipamentos padronizados. Realizamos o levantamento técnico detalhado e desenvolvemos projetos totalmente personalizados para atender perfeitamente aos seguintes setores:
                 </p>
               </div>
 
@@ -1216,10 +1216,6 @@ export default function App() {
               {
                 q: "Qual a diferença entre a manutenção preventiva e a corretiva?",
                 a: "A manutenção preventiva consiste em inspeções programadas para troca de oleo lubrificante, filtros de combustivel, oleo e ar e verificação de componentes eletricos, e simulação de falta de energia, garantindo que o gerador funcione perfeitamente quando for acionado de surpresa. A manutenção corretiva é realizada após o surgimento de uma falha para consertar ou substituir componentes danificados de forma emergencial."
-              },
-              {
-                q: "Vocês enviam peças de gerador para todo o Brasil?",
-                a: "Sim, enviamos toda a nossa linha de peças de reposição via transportadoras rápidas ou Correios para qualquer estado do Brasil, com rastreamento completo."
               },
               {
                 q: "Como escolher o tamanho/potência correto do gerador para a minha empresa?",
