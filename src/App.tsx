@@ -53,7 +53,7 @@ interface CartItem {
 export default function App() {
   // Navigation & UI States
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [selectedCategory, setSelectedCategory] = useState<string>('geradores');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [sortBy, setSortBy] = useState<string>('popular');
   const [activeSlide, setActiveSlide] = useState(0);
@@ -98,15 +98,15 @@ export default function App() {
       ),
       badge: 'SUPORTE TÉCNICO ESPECIALIZADO 24H',
       buttonText: 'Atendimento Especializado',
-      actionCategory: 'servicos',
+      actionCategory: 'geradores',
       bgGradient: 'from-brand-dark via-brand-blue to-slate-900',
     },
     {
-      title: 'Peças e Soluções Técnicas para Manter sua Energia Ativa',
-      subtitle: 'Conte com a Iguaçu Geradores no fornecimento de peças, componentes e kits de manutenção para grupos geradores de diferentes marcas e aplicações. Produtos selecionados para garantir confiabilidade, desempenho e segurança no funcionamento do seu equipamento.',
-      badge: 'ESTOQUE COMPLETO A PRONTA ENTREGA',
-      buttonText: 'Ver Catálogo de Peças',
-      actionCategory: 'revisao',
+      title: 'Projetos de Geradores Sob Medida',
+      subtitle: 'Desenvolvemos soluções personalizadas de geração de energia de 30 a 1000 kVA. Cabines silenciadas com atenuação acústica de alta eficiência para atender exatamente a demanda técnica do seu empreendimento.',
+      badge: 'PROJETOS PERSONALIZADOS SOB MEDIDA',
+      buttonText: 'Conhecer Geradores',
+      actionCategory: 'geradores',
       bgGradient: 'from-slate-900 via-brand-blue/80 to-brand-blue',
     }
   ];
@@ -293,7 +293,7 @@ export default function App() {
             </button>
             <div 
               onClick={() => {
-                setSelectedCategory('all');
+                setSelectedCategory('geradores');
                 scrollToSection('top');
               }}
               className="cursor-pointer flex flex-col justify-start"
@@ -313,19 +313,12 @@ export default function App() {
             </div>
           </div>
 
-          {/* Search bar Desktop */}
-          <div className="hidden lg:flex flex-1 max-w-xl relative" id="search-bar-desktop">
-            <input 
-              type="text" 
-              placeholder="O que você está procurando? (Ex: Filtro, Controlador, WEG, etc...)" 
-              value={searchQuery}
-              onChange={(e) => {
-                setSearchQuery(e.target.value);
-                scrollToSection('catalogo');
-              }}
-              className="w-full pl-4 pr-10 py-2.5 rounded-full bg-slate-100 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-blue border-transparent focus:border-transparent text-sm transition-all"
-            />
-            <Search className="w-5 h-5 text-slate-400 absolute right-3.5 top-3" />
+          {/* Custom Project Badge instead of Search bar */}
+          <div className="hidden lg:flex flex-1 max-w-sm justify-center items-center" id="header-project-badge">
+            <span className="text-xs bg-slate-100 text-slate-600 font-semibold px-4 py-2 rounded-full border border-slate-200/50 flex items-center gap-2">
+              <Zap className="w-3.5 h-3.5 text-brand-blue" />
+              Projetos de Geração de Energia Sob Medida
+            </span>
           </div>
 
           {/* Contact & Quote Cart Widget */}
@@ -361,20 +354,7 @@ export default function App() {
               </a>
             </div>
 
-            {/* Quote Cart Button */}
-            <button 
-              onClick={() => setIsCartOpen(true)}
-              className="relative p-2.5 rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-brand-blue transition-all"
-              aria-label="Abrir orçamento"
-              id="btn-open-quote-drawer"
-            >
-              <ShoppingCart className="w-5 h-5" />
-              {cart.length > 0 && (
-                <span className="absolute -top-1 -right-1 w-5 h-5 bg-brand-red text-white text-[11px] font-bold rounded-full flex items-center justify-center shadow-md animate-bounce">
-                  {cart.reduce((sum, item) => sum + item.quantity, 0)}
-                </span>
-              )}
-            </button>
+            {/* Quote Cart Button Removed */}
           </div>
         </div>
 
@@ -407,22 +387,7 @@ export default function App() {
         </nav>
       </header>
 
-      {/* MOBILE SEARCH BAR */}
-      <div className="lg:hidden p-4 bg-white shadow-sm border-b border-slate-100" id="search-bar-mobile">
-        <div className="relative">
-          <input 
-            type="text" 
-            placeholder="Buscar filtros, disjuntores, geradores..." 
-            value={searchQuery}
-            onChange={(e) => {
-              setSearchQuery(e.target.value);
-              scrollToSection('catalogo');
-            }}
-            className="w-full pl-4 pr-10 py-2.5 rounded-lg bg-slate-100 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-blue border-transparent text-sm transition-all"
-          />
-          <Search className="w-5 h-5 text-slate-400 absolute right-3.5 top-3" />
-        </div>
-      </div>
+      {/* MOBILE SEARCH BAR REMOVED */}
 
       {/* MOBILE MENU NAV DRAWER */}
       <AnimatePresence>
@@ -775,334 +740,139 @@ export default function App() {
         </div>
       </section>
 
-      {/* 6. POPULAR QUICK ACCESS CATEGORIES (Tudo em...) */}
-      <section className="py-12 px-4 bg-slate-50 max-w-7xl mx-auto w-full">
-        <h2 className="text-xl md:text-2xl font-bold text-slate-900 mb-8 border-l-4 border-brand-red pl-3 uppercase tracking-wider font-heading">
-          Navegue pelas Categorias Principais
-        </h2>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          
-          <div 
-            onClick={() => { setSelectedCategory('eletrica'); scrollToSection('catalogo'); }}
-            className="group cursor-pointer bg-white rounded-2xl p-6 border border-slate-200/60 hover:border-brand-blue/50 hover:shadow-lg transition-all flex flex-col justify-between h-[180px] relative overflow-hidden"
-          >
-            <div className="w-12 h-12 rounded-xl bg-brand-blue/5 text-brand-blue flex items-center justify-center group-hover:bg-brand-blue group-hover:text-white transition-all">
-              <Zap className="w-6 h-6" />
-            </div>
-            <div>
-              <span className="text-xs text-slate-400 font-bold block uppercase tracking-wider">Tudo em</span>
-              <h3 className="font-extrabold text-slate-800 group-hover:text-brand-blue text-sm md:text-lg transition-all">
-                Controladores & Elétrica
-              </h3>
-            </div>
-            <div className="absolute top-2 right-2 opacity-5 text-brand-blue/10 font-heading text-8xl pointer-events-none font-bold">1</div>
-          </div>
 
-          <div 
-            onClick={() => { setSelectedCategory('revisao'); scrollToSection('catalogo'); }}
-            className="group cursor-pointer bg-white rounded-2xl p-6 border border-slate-200/60 hover:border-brand-blue/50 hover:shadow-lg transition-all flex flex-col justify-between h-[180px] relative overflow-hidden"
-          >
-            <div className="w-12 h-12 rounded-xl bg-brand-blue/5 text-brand-blue flex items-center justify-center group-hover:bg-brand-blue group-hover:text-white transition-all">
-              <Package className="w-6 h-6" />
-            </div>
-            <div>
-              <span className="text-xs text-slate-400 font-bold block uppercase tracking-wider">Tudo em</span>
-              <h3 className="font-extrabold text-slate-800 group-hover:text-brand-blue text-sm md:text-lg transition-all">
-                Filtros & Revisão
-              </h3>
-            </div>
-            <div className="absolute top-2 right-2 opacity-5 text-brand-blue/10 font-heading text-8xl pointer-events-none font-bold">2</div>
-          </div>
-
-          <div 
-            onClick={() => { setSelectedCategory('geradores'); scrollToSection('catalogo'); }}
-            className="group cursor-pointer bg-white rounded-2xl p-6 border border-slate-200/60 hover:border-brand-blue/50 hover:shadow-lg transition-all flex flex-col justify-between h-[180px] relative overflow-hidden"
-          >
-            <div className="w-12 h-12 rounded-xl bg-brand-blue/5 text-brand-blue flex items-center justify-center group-hover:bg-brand-blue group-hover:text-white transition-all">
-              <Briefcase className="w-6 h-6" />
-            </div>
-            <div>
-              <span className="text-xs text-slate-400 font-bold block uppercase tracking-wider">Tudo em</span>
-              <h3 className="font-extrabold text-slate-800 group-hover:text-brand-blue text-sm md:text-lg transition-all">
-                Grupos Geradores
-              </h3>
-            </div>
-            <div className="absolute top-2 right-2 opacity-5 text-brand-blue/10 font-heading text-8xl pointer-events-none font-bold">3</div>
-          </div>
-
-          <div 
-            onClick={() => { setSelectedCategory('servicos'); scrollToSection('catalogo'); }}
-            className="group cursor-pointer bg-white rounded-2xl p-6 border border-slate-200/60 hover:border-brand-blue/50 hover:shadow-lg transition-all flex flex-col justify-between h-[180px] relative overflow-hidden"
-          >
-            <div className="w-12 h-12 rounded-xl bg-brand-blue/5 text-brand-blue flex items-center justify-center group-hover:bg-brand-blue group-hover:text-white transition-all">
-              <Wrench className="w-6 h-6" />
-            </div>
-            <div>
-              <span className="text-xs text-slate-400 font-bold block uppercase tracking-wider">Tudo em</span>
-              <h3 className="font-extrabold text-slate-800 group-hover:text-brand-blue text-sm md:text-lg transition-all">
-                Manutenção & Serviços
-              </h3>
-            </div>
-            <div className="absolute top-2 right-2 opacity-5 text-brand-blue/10 font-heading text-8xl pointer-events-none font-bold">4</div>
-          </div>
-
-        </div>
-      </section>
-
-      {/* 7. CORE E-COMMERCE / CATALOG SECTION */}
-      <section className="py-16 px-4 bg-white border-t border-slate-100" id="catalogo">
+      {/* 7. CORE CUSTOM PROJECT SECTION */}
+      <section className="py-20 px-4 bg-white border-t border-slate-100" id="catalogo">
         <div className="max-w-7xl mx-auto">
           
-          {/* Section Heading & Interactive Filter bar */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 border-b border-slate-100 pb-8">
-            <div>
-              <span className="text-brand-blue text-xs font-bold tracking-widest block uppercase mb-2">Nosso Portfólio</span>
-              <h2 className="text-2xl md:text-4xl font-extrabold text-slate-900 tracking-tight leading-none font-heading uppercase">
-                {CATEGORIES.find(c => c.id === selectedCategory)?.name}
-              </h2>
-              <p className="text-slate-500 text-sm mt-2 max-w-xl">
-                Selecione as peças necessárias, adicione ao orçamento coletivo ou clique no botão verde para tirar dúvidas imediatas no WhatsApp.
-              </p>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            
+            {/* Left Side: Premium Realistic Cover Image */}
+            <div className="lg:col-span-5">
+              <div className="relative group rounded-3xl overflow-hidden border border-slate-200/60 shadow-xl bg-slate-50 transition-all duration-300 hover:shadow-2xl">
+                {/* Floating Dimensioning Indicator Badge */}
+                <div className="absolute top-4 left-4 z-20">
+                  <span className="text-[10px] uppercase tracking-widest font-extrabold px-3 py-1.5 rounded-full bg-brand-red text-slate-900 shadow-md">
+                    PROJETOS DE 30 A 1000 KVA
+                  </span>
+                </div>
+
+                <div className="relative h-[320px] sm:h-[420px] w-full overflow-hidden">
+                  <img 
+                    src="https://i.postimg.cc/cHVLqJMf/Whats-App-Image-2026-07-16-at-14-51-07.jpg"
+                    alt="Grupo Gerador Diesel Iguaçu"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent"></div>
+                </div>
+
+                {/* Technical Dimensioning Overlay */}
+                <div className="p-6 bg-slate-900 text-white border-t border-slate-800">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-brand-blue/20 text-brand-blue flex items-center justify-center shrink-0 border border-brand-blue/30">
+                      <Zap className="w-5 h-5 text-brand-blue" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-xs uppercase tracking-wider text-slate-200">Garantia de Entrega Técnica</h4>
+                      <p className="text-[11px] text-slate-400 mt-0.5">Instalação e dimensionamento conduzidos por engenharia especializada.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* Filter controls */}
-            <div className="flex flex-wrap items-center gap-3">
-              {/* Brand Selector */}
-              <div className="flex items-center gap-1.5">
-                <span className="text-xs font-bold text-slate-400 uppercase">Fabricante:</span>
-                <select 
-                  value={selectedBrand}
-                  onChange={(e) => setSelectedBrand(e.target.value)}
-                  className="bg-slate-50 border border-slate-200 text-slate-700 text-xs rounded-lg px-2.5 py-2 font-medium focus:outline-none focus:ring-1 focus:ring-brand-blue"
-                >
-                  <option value="all">Todas as Marcas</option>
-                  <option value="Iguaçu">Iguaçu Geradores</option>
-                  <option value="Baudouin">Baudouin</option>
-                  <option value="WEG">WEG / KVA</option>
-                  <option value="DSE">Deep Sea (DSE)</option>
-                  <option value="Chint">Chint Electric</option>
-                  <option value="Teccom">Teccom</option>
-                  <option value="Fleetguard">Fleetguard</option>
-                </select>
+            {/* Right Side: Copywriting & Custom Focus presentation */}
+            <div className="lg:col-span-7 space-y-8">
+              <div className="space-y-4">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-brand-blue/5 border border-brand-blue/10 rounded-full text-brand-blue text-[11px] font-extrabold uppercase tracking-widest">
+                  <SlidersHorizontal className="w-3.5 h-3.5" />
+                  Solução Confiável Sob Medida
+                </div>
+                
+                <h2 className="text-3xl md:text-5xl font-black text-slate-950 tracking-tight leading-none uppercase font-heading">
+                  GRUPO GERADOR DIESEL SOB MEDIDA
+                </h2>
+
+                <p className="text-slate-600 text-sm md:text-base leading-relaxed">
+                  A <strong className="font-bold text-brand-blue">Iguaçu Geradores</strong> não trabalha com uma lista fixa de equipamentos padronizados. Entendemos que a segurança energética do seu patrimônio ou negócio exige uma solução dimensionada especificamente para as suas necessidades de carga e de infraestrutura.
+                </p>
+
+                <p className="text-slate-600 text-sm md:text-base leading-relaxed font-semibold">
+                  Realizamos o levantamento técnico detalhado e desenvolvemos projetos totalmente personalizados (cabinados e silenciados de alta performance ou abertos para salas dedicadas) para atender perfeitamente aos seguintes setores:
+                </p>
               </div>
 
-              {/* Sort selector */}
-              <div className="flex items-center gap-1.5">
-                <span className="text-xs font-bold text-slate-400 uppercase">Ordenar:</span>
-                <select 
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value)}
-                  className="bg-slate-50 border border-slate-200 text-slate-700 text-xs rounded-lg px-2.5 py-2 font-medium focus:outline-none focus:ring-1 focus:ring-brand-blue"
-                >
-                  <option value="popular">Destaques / Relevância</option>
-                  <option value="lowest">Menor Preço</option>
-                  <option value="highest">Maior Preço</option>
-                  <option value="alphabetical">A - Z (Nome)</option>
-                </select>
+              {/* 2x2 Grid of Targeted Sectors */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
+                <div className="flex gap-4 items-start">
+                  <div className="w-10 h-10 rounded-xl bg-slate-50 text-slate-800 flex items-center justify-center shrink-0 border border-slate-200/60 shadow-sm">
+                    <Building className="w-5 h-5 text-brand-blue" />
+                  </div>
+                  <div>
+                    <h4 className="font-extrabold text-slate-900 text-sm uppercase tracking-wider">Empresas & Comércios</h4>
+                    <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+                      Proteção contra quedas de energia que causam interrupções nas vendas, prejuízos no caixa e desligamento de servidores e climatização.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex gap-4 items-start">
+                  <div className="w-10 h-10 rounded-xl bg-slate-50 text-slate-800 flex items-center justify-center shrink-0 border border-slate-200/60 shadow-sm">
+                    <Factory className="w-5 h-5 text-brand-blue" />
+                  </div>
+                  <div>
+                    <h4 className="font-extrabold text-slate-900 text-sm uppercase tracking-wider">Indústrias</h4>
+                    <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+                      Potência robusta em regime contínuo ou emergência para suportar as demandas de maquinários críticos e garantir a continuidade da linha de produção.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex gap-4 items-start">
+                  <div className="w-10 h-10 rounded-xl bg-slate-50 text-slate-800 flex items-center justify-center shrink-0 border border-slate-200/60 shadow-sm">
+                    <Sprout className="w-5 h-5 text-brand-blue" />
+                  </div>
+                  <div>
+                    <h4 className="font-extrabold text-slate-900 text-sm uppercase tracking-wider">Agronegócio</h4>
+                    <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+                      Dimensionamento ideal para aviários, granjas, silos, ordenhas automáticas e pivôs de irrigação, evitando prejuízos fatais por falta de energia.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex gap-4 items-start">
+                  <div className="w-10 h-10 rounded-xl bg-slate-50 text-slate-800 flex items-center justify-center shrink-0 border border-slate-200/60 shadow-sm">
+                    <Home className="w-5 h-5 text-brand-blue" />
+                  </div>
+                  <div>
+                    <h4 className="font-extrabold text-slate-900 text-sm uppercase tracking-wider">Residências & Condomínios</h4>
+                    <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+                      Conforto completo com silêncio absoluto através de isolamento termoacústico premium e QTA (Painel de Transferência Automática).
+                    </p>
+                  </div>
+                </div>
               </div>
 
-              {/* Clear filters if set */}
-              {(selectedCategory !== 'all' || selectedBrand !== 'all' || searchQuery !== '') && (
-                <button
-                  onClick={() => {
-                    setSelectedCategory('all');
-                    setSelectedBrand('all');
-                    setSearchQuery('');
-                  }}
-                  className="text-xs text-brand-red font-bold hover:underline py-1.5 px-2.5"
+              {/* Unique Action Button with WhatsApp Link targeting project discussion */}
+              <div className="pt-4">
+                <a
+                  href={`https://wa.me/5545999299311?text=${encodeURIComponent(
+                    `Olá! Gostaria de conversar com um engenheiro técnico da Iguaçu Geradores para realizar o levantamento técnico e solicitar o orçamento de um Grupo Gerador Diesel Sob Medida para a minha necessidade.`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-3 bg-brand-green hover:bg-green-600 text-white font-extrabold text-sm px-8 py-4 rounded-2xl shadow-xl shadow-green-500/10 hover:shadow-2xl hover:scale-[1.02] transition-all cursor-pointer"
+                  id="btn-solicitar-projeto-sob-medida"
                 >
-                  Limpar Filtros
-                </button>
-              )}
+                  <MessageSquare className="w-5 h-5 fill-current shrink-0" />
+                  <span>SOLICITAR PROJETO</span>
+                </a>
+              </div>
             </div>
+
           </div>
-
-          {/* NO PRODUCTS FOUND STATE */}
-          {filteredProducts.length === 0 ? (
-            <div className="text-center py-20 px-4 bg-slate-50 rounded-3xl border border-dashed border-slate-200">
-              <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center text-slate-400 mx-auto mb-4">
-                <AlertCircle className="w-8 h-8" />
-              </div>
-              <h3 className="text-lg font-bold text-slate-800">Nenhum produto encontrado</h3>
-              <p className="text-slate-500 text-sm mt-1 max-w-md mx-auto">
-                Não encontramos itens correspondentes aos termos digitados ou filtros selecionados. Tente buscar por outros termos ou entre em contato direto via WhatsApp.
-              </p>
-              <button
-                onClick={() => {
-                  setSelectedCategory('all');
-                  setSelectedBrand('all');
-                  setSearchQuery('');
-                }}
-                className="mt-6 inline-flex items-center gap-2 bg-brand-blue text-white px-5 py-2.5 rounded-xl text-xs font-bold hover:bg-brand-blue/90 transition-all"
-              >
-                Resetar todos os filtros
-              </button>
-            </div>
-          ) : (
-            /* PRODUCT GRID layout */
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
-              <AnimatePresence mode="popLayout">
-                {filteredProducts.map((product) => (
-                  <motion.div
-                    layout
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.3 }}
-                    key={product.id}
-                    className="group bg-white rounded-2xl border border-slate-200/70 hover:border-brand-blue/30 overflow-hidden shadow-sm hover:shadow-xl transition-all flex flex-col justify-between h-full relative"
-                  >
-                    {/* Badge status (DESTAQUE / LANÇAMENTO) */}
-                    {product.tag !== 'normal' && (
-                      <div className="absolute top-3 left-3 z-20">
-                        <span className={`text-[10px] uppercase tracking-widest font-extrabold px-2.5 py-1 rounded-md shadow-sm ${
-                          product.tag === 'destaque' ? 'bg-brand-red text-slate-900' : 'bg-brand-blue text-white'
-                        }`}>
-                          {product.tag === 'destaque' ? 'Destaque' : 'Lançamento'}
-                        </span>
-                      </div>
-                    )}
-
-                    {/* Brand indicator top right */}
-                    <div className="absolute top-3 right-3 z-20">
-                      <span className="bg-slate-100 text-slate-700 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider border border-slate-200/50">
-                        {product.brand}
-                      </span>
-                    </div>
-
-                    {/* Highly Professional Schematic Vector Placeholder / Visual overlay */}
-                    <div className="relative bg-slate-100 h-48 flex items-center justify-center overflow-hidden border-b border-slate-100 shrink-0">
-                      <div className="absolute inset-0 bg-gradient-to-tr from-brand-blue/5 to-slate-200/10 z-0"></div>
-                      
-                      {product.category === 'geradores' ? (
-                        <img 
-                          src="https://i.postimg.cc/cHVLqJMf/Whats-App-Image-2026-07-16-at-14-51-07.jpg"
-                          alt={product.name}
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 relative z-10"
-                          referrerPolicy="no-referrer"
-                        />
-                      ) : (
-                        /* Product Specific Vector graphics */
-                        <div className="relative z-10 w-24 h-24 text-brand-blue/80 group-hover:scale-105 transition-transform duration-300">
-                          <ProductVisual category={product.category} id={product.id} />
-                        </div>
-                      )}
-
-                      {/* Small hover specs detail container */}
-                      <div className="absolute inset-x-0 bottom-0 bg-slate-900/90 text-white p-3 text-xs translate-y-full group-hover:translate-y-0 transition-all duration-300 z-10 font-light backdrop-blur-sm line-clamp-3">
-                        {product.description || 'Disponibilidade de entrega expressa de peças sob encomenda.'}
-                      </div>
-                    </div>
-
-                    {/* Product Metadata & pricing */}
-                    <div className="p-5 flex-1 flex flex-col justify-between">
-                      <div>
-                        {/* Rating stars */}
-                        <div className="flex gap-0.5 text-amber-400 mb-1.5">
-                          {Array.from({ length: 5 }).map((_, i) => (
-                            <Star 
-                              key={i} 
-                              className={`w-3.5 h-3.5 fill-current ${
-                                i < product.rating ? 'text-amber-400' : 'text-slate-200'
-                              }`} 
-                            />
-                          ))}
-                        </div>
-
-                        {/* Product title */}
-                        <h3 className="font-semibold text-slate-800 text-sm md:text-sm leading-snug hover:text-brand-blue transition-colors line-clamp-2 min-h-[40px]">
-                          {product.name}
-                        </h3>
-
-                        {/* Part Number code */}
-                        {product.code && (
-                          <span className="inline-block font-mono text-[11px] text-slate-400 mt-1 uppercase">
-                            Ref: {product.code}
-                          </span>
-                        )}
-                      </div>
-
-                      <div className="mt-4 pt-4 border-t border-slate-100">
-                        {product.isConsultation ? (
-                          <div className="mb-4">
-                            <span className="text-brand-blue text-sm font-bold bg-slate-100 px-3 py-1.5 rounded-lg inline-block uppercase tracking-wider">
-                              Sob Consulta
-                            </span>
-                          </div>
-                        ) : (
-                          <div className="mb-4">
-                            {/* Pix Cash Discount Price */}
-                            <span className="text-slate-400 text-[10px] block line-through">
-                              R$ {(product.price * 1.05).toFixed(2)}
-                            </span>
-                            <div className="flex items-baseline gap-1.5 mt-0.5">
-                              <span className="text-brand-blue text-lg font-black tracking-tight">
-                                R$ {product.discountPrice.toFixed(2)}
-                              </span>
-                              <span className="text-emerald-600 text-[10px] font-bold bg-emerald-50 px-1 py-0.5 rounded">
-                                à vista (PIX)
-                              </span>
-                            </div>
-                            
-                            {/* Installment terms */}
-                            <span className="text-slate-500 text-[11px] block mt-0.5">
-                              ou <span className="font-bold">{product.installments}x de R$ {product.installmentValue.toFixed(2)}</span> sem juros
-                            </span>
-                          </div>
-                        )}
-
-                        {/* Green Direct WhatsApp Button & Add to Quote button */}
-                        <div className="space-y-2">
-                          <a
-                            href={`https://wa.me/5545999299311?text=${encodeURIComponent(
-                              `Olá, Iguaçu Geradores! Gostaria de atendimento imediato para o seguinte item:\n\n` +
-                              `*Produto:* ${product.name}\n` +
-                              `${product.code ? `*Código/Ref:* ${product.code}\n` : ''}` +
-                              `*Marca:* ${product.brand}\n` +
-                              `${product.isConsultation ? '*Valor:* Sob Consulta' : `*Preço:* R$ ${product.discountPrice.toFixed(2)} à vista (ou em até ${product.installments}x sem juros)`}\n\n` +
-                              `Por favor, me informe a disponibilidade e o valor do frete para minha região.`
-                            )}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-full bg-brand-green hover:bg-green-600 text-white font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-all shadow-md shadow-green-500/10 cursor-pointer"
-                            id={`btn-whatsapp-${product.id}`}
-                          >
-                            <MessageSquare className="w-4 h-4 fill-current shrink-0" />
-                            <span>{product.isConsultation ? 'Atendimento Especializado' : 'Atendimento Imediato'}</span>
-                          </a>
-
-                          {!product.isConsultation && (
-                            <button
-                              onClick={() => handleAddToQuote(product)}
-                              className={`w-full py-2 px-3 rounded-xl text-xs font-semibold flex items-center justify-center gap-1.5 transition-all ${
-                                cart.some(item => item.product.id === product.id)
-                                  ? 'bg-slate-100 text-brand-blue border border-slate-200'
-                                  : 'bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-slate-900 border border-slate-200/60'
-                              }`}
-                              id={`btn-quote-${product.id}`}
-                            >
-                              {cart.some(item => item.product.id === product.id) ? (
-                                <>
-                                  <Check className="w-3.5 h-3.5 text-brand-blue" />
-                                  <span>Adicionado ({cart.find(item => item.product.id === product.id)?.quantity})</span>
-                                </>
-                              ) : (
-                                <>
-                                  <Plus className="w-3.5 h-3.5" />
-                                  <span>Adicionar ao Orçamento</span>
-                                </>
-                              )}
-                            </button>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </AnimatePresence>
-            </div>
-          )}
         </div>
       </section>
 
@@ -1573,10 +1343,10 @@ export default function App() {
             </h3>
             <ul className="space-y-3 text-xs text-slate-400 font-medium">
               <li><button onClick={() => scrollToSection('top')} className="hover:text-white transition-colors">Sobre a Empresa</button></li>
-              <li><button onClick={() => scrollToSection('catalogo')} className="hover:text-white transition-colors">Catálogo de Peças</button></li>
+              <li><button onClick={() => scrollToSection('catalogo')} className="hover:text-white transition-colors">Catálogo de Geradores</button></li>
               <li><button onClick={() => scrollToSection('faq')} className="hover:text-white transition-colors">Garantia & Devoluções</button></li>
-              <li><button onClick={() => { setSelectedCategory('geradores'); scrollToSection('catalogo'); }} className="hover:text-white transition-colors">Grupos Geradores Novos</button></li>
-              <li><button onClick={() => { setSelectedCategory('servicos'); scrollToSection('catalogo'); }} className="hover:text-white transition-colors">Revisão e Manutenção</button></li>
+              <li><button onClick={() => { setSelectedCategory('geradores'); scrollToSection('catalogo'); }} className="hover:text-white transition-colors">Grupos Geradores</button></li>
+              <li><button onClick={() => scrollToSection('servicos-info')} className="hover:text-white transition-colors">Revisão e Manutenção</button></li>
               <li><button onClick={() => scrollToSection('faq')} className="hover:text-white transition-colors">Perguntas Frequentes</button></li>
               <li><button onClick={() => scrollToSection('servicos-info')} className="hover:text-white transition-colors">Fale Conosco</button></li>
             </ul>
