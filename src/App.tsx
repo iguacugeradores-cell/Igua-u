@@ -267,7 +267,7 @@ export default function App() {
             </div>
           </div>
           <div className="hidden md:flex items-center gap-6">
-            <span className="flex items-center gap-1"><CreditCard className="w-4 h-4 text-brand-blue" /> PARCELAMENTO EM ATÉ 12X</span>
+            <span className="flex items-center gap-1"><CreditCard className="w-4 h-4 text-brand-blue" /> CONDIÇÕES ESPECIAIS DE PAGAMENTO</span>
           </div>
           <div className="flex items-center gap-1">
             <span className="bg-black/10 px-2 py-0.5 rounded text-[10px] md:text-xs font-bold text-slate-900">
@@ -651,8 +651,8 @@ export default function App() {
               <CreditCard className="w-6 h-6" />
             </div>
             <div>
-              <h3 className="font-bold text-slate-800 text-sm md:text-base leading-tight">FACILIDADE NO PAGAMENTO</h3>
-              <p className="text-xs text-slate-500 mt-0.5">Em até 12x no cartão ou desconto especial à vista no PIX.</p>
+              <h3 className="font-bold text-slate-800 text-sm md:text-base leading-tight">CONDIÇÕES ESPECIAIS DE PAGAMENTO</h3>
+              <p className="text-xs text-slate-500 mt-0.5">Facilitamos a aquisição do seu grupo gerador com condições personalizadas, possibilidade de financiamento e alternativas de pagamento conforme o projeto e a necessidade de cada cliente.</p>
             </div>
           </div>
 
@@ -1339,14 +1339,16 @@ export default function App() {
           <div className="space-y-6">
             <div>
               <h3 className="font-heading font-extrabold text-white text-sm uppercase tracking-wider mb-4 border-l-2 border-brand-red pl-2">
-                Formas de Pagamento
+                Condições de Pagamento
               </h3>
-              <p className="text-[10px] text-slate-400 mb-3">Aceitamos cartões de crédito, boleto faturado (sob análise) e PIX com desconto.</p>
+              <p className="text-xs text-slate-400 mb-4 leading-relaxed">
+                Facilitamos a aquisição do seu grupo gerador com condições personalizadas, possibilidade de financiamento e alternativas de pagamento conforme o projeto e a necessidade de cada cliente. Entre em contato com nossa equipe comercial para a melhor proposta.
+              </p>
               
               {/* Payment Card Icons Grid */}
               <div className="flex flex-wrap gap-2">
-                {['Visa', 'MasterCard', 'Elo', 'Boleto', 'Pix', 'Faturado'].map((pay, i) => (
-                  <span key={i} className="bg-slate-800 text-[10px] font-bold text-slate-300 px-2 py-1 rounded border border-slate-700/50 uppercase tracking-wider">
+                {['Financiamento', 'Boleto Faturado', 'Cartão de Crédito', 'Pix'].map((pay, i) => (
+                  <span key={i} className="bg-slate-800 text-[10px] font-bold text-slate-300 px-2.5 py-1.5 rounded border border-slate-700/50 uppercase tracking-wider">
                     {pay}
                   </span>
                 ))}
