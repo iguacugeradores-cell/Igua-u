@@ -1085,9 +1085,6 @@ export default function App() {
             <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight font-heading">
               Panfleto Oficial de Soluções
             </h2>
-            <p className="text-slate-600 text-xs md:text-sm mt-3 max-w-xl mx-auto leading-relaxed">
-              Consulte diretamente no site o nosso material informativo oficial. Explore as principais soluções em grupos geradores, atendimento técnico especializado e contratos de manutenção sem necessidade de downloads obrigatórios.
-            </p>
           </div>
 
           {/* Interactive full-width responsive reader container */}
