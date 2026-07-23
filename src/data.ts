@@ -67,7 +67,7 @@ export const TESTIMONIALS: Testimonial[] = [
     id: '2',
     name: 'Fernanda Silveira',
     company: 'Condomínio Residencial Bella Vista',
-    text: 'O projeto sob medida para o nosso condomínio superou as expectativas. Equipamento extremamente silencioso e que atende a todos os blocos de forma automática quando falta energia da concessionária.',
+    text: 'Tivemos uma falha inesperada no nosso grupo gerador e a equipe da Iguaçu Geradores prestou um atendimento corretivo com muita agilidade. O problema foi identificado e solucionado rapidamente, restabelecendo o funcionamento do equipamento e evitando maiores prejuízos.',
     rating: 5,
     date: '18/05/2026'
   },

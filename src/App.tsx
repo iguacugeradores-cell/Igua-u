@@ -697,7 +697,7 @@ export default function App() {
                 {/* Floating Dimensioning Indicator Badge */}
                 <div className="absolute top-4 left-4 z-20">
                   <span className="text-[10px] uppercase tracking-widest font-extrabold px-3 py-1.5 rounded-full bg-brand-red text-slate-900 shadow-md">
-                    PROJETOS DE 30 A 1000 KVA
+                    PROJETOS PERSONALIZADOS
                   </span>
                 </div>
 
@@ -739,7 +739,7 @@ export default function App() {
                 </h2>
 
                 <p className="text-slate-600 text-sm md:text-base leading-relaxed">
-                  Desenvolvemos sistemas de geração de energia de 30 a 1000 kVA, com configurações personalizadas para cada aplicação. Os grupos geradores podem ser fornecidos em versão aberta ou com cabine acústica, dimensionada para atender requisitos de instalação, operação e controle de ruído.
+                  Desenvolvemos sistemas de geração de energia com configurações personalizadas para cada aplicação. Os grupos geradores podem ser fornecidos em versão aberta ou com cabine acústica, dimensionada para atender requisitos de instalação, operação e controle de ruído.
                 </p>
 
                 <p className="text-slate-600 text-sm md:text-base leading-relaxed font-semibold">
