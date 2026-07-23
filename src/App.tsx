@@ -100,14 +100,6 @@ export default function App() {
       buttonText: 'Atendimento Especializado',
       actionCategory: 'geradores',
       bgGradient: 'from-brand-dark via-brand-blue to-slate-900',
-    },
-    {
-      title: 'Projetos de Geradores Sob Medida',
-      subtitle: 'Desenvolvemos soluções personalizadas de geração de energia de 30 a 1000 kVA. Cabines silenciadas com atenuação acústica de alta eficiência para atender exatamente a demanda técnica do seu empreendimento.',
-      badge: 'PROJETOS PERSONALIZADOS SOB MEDIDA',
-      buttonText: 'Conhecer Geradores',
-      actionCategory: 'geradores',
-      bgGradient: 'from-slate-900 via-brand-blue/80 to-brand-blue',
     }
   ];
 
