@@ -40,7 +40,8 @@ import {
   Sprout,
   Building,
   HeartPulse,
-  Home
+  Home,
+  Download
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { PRODUCTS, CATEGORIES, BRANDS, TESTIMONIALS, Product } from './data';
@@ -873,7 +874,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
           
           {/* Left Text Detail */}
-          <div className="lg:col-span-5 space-y-6 flex flex-col justify-center">
+          <div className="lg:col-span-7 space-y-6 flex flex-col justify-center">
             <div>
               <span className="text-brand-blue text-xs font-bold tracking-widest uppercase block">Energia Sem Interrupções</span>
               <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight leading-tight font-heading mt-1">
@@ -940,40 +941,8 @@ export default function App() {
             </div>
           </div>
 
-          {/* Center Flyer Image Column */}
-          <div className="lg:col-span-3 flex flex-col justify-center">
-            <div className="relative group overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-2 shadow-md transition-all hover:shadow-xl hover:border-brand-blue/30 h-full flex flex-col justify-between">
-              <div className="relative overflow-hidden rounded-xl aspect-[3/4.2] bg-slate-50 flex-1">
-                <img 
-                  src="https://i.postimg.cc/50TLPv7L/Whats-App-Image-2026-07-22-at-15-05-58.jpg" 
-                  alt="Iguaçu Geradores - Nosso Trabalho"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-60 group-hover:opacity-45 transition-opacity"></div>
-                <div className="absolute bottom-3 left-3 right-3 text-white">
-                  <span className="text-[9px] font-black bg-brand-red text-slate-900 px-2 py-0.5 rounded-full uppercase tracking-widest inline-block mb-1">
-                    Trabalho Real
-                  </span>
-                  <p className="text-xs font-black leading-tight uppercase tracking-wide">Assistência & Projetos</p>
-                </div>
-              </div>
-              <div className="pt-2.5 pb-1 px-1 flex items-center justify-between shrink-0">
-                <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Panfleto Oficial</span>
-                <a 
-                  href="https://i.postimg.cc/50TLPv7L/Whats-App-Image-2026-07-22-at-15-05-58.jpg"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[10px] font-black text-brand-blue hover:underline uppercase tracking-wider flex items-center gap-0.5"
-                >
-                  Ver Ampliado ↗
-                </a>
-              </div>
-            </div>
-          </div>
-
           {/* Right Lead Form Container */}
-          <div className="lg:col-span-4 bg-white rounded-3xl p-6 border border-slate-200/70 shadow-lg relative flex flex-col justify-center">
+          <div className="lg:col-span-5 bg-white rounded-3xl p-6 border border-slate-200/70 shadow-lg relative flex flex-col justify-center">
             <div className="absolute top-4 right-4 bg-brand-blue/10 text-brand-blue text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
               Plantão Ativo
             </div>
@@ -1107,6 +1076,62 @@ export default function App() {
             )}
           </div>
 
+        </div>
+      </section>
+
+      {/* SECTION: PANFLETO OFICIAL DE SOLUÇÕES */}
+      <section className="py-20 px-4 bg-slate-50 border-t border-b border-slate-200/60 relative overflow-hidden" id="panfleto-oficial">
+        <div className="absolute top-0 left-1/4 w-96 h-96 rounded-full bg-brand-blue/5 filter blur-[120px] pointer-events-none"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 rounded-full bg-brand-red/5 filter blur-[120px] pointer-events-none"></div>
+
+        <div className="max-w-4xl mx-auto relative z-10">
+          <div className="text-center mb-10">
+            <span className="text-brand-blue text-xs font-bold tracking-widest uppercase block mb-2">Especificações e Serviços</span>
+            <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight font-heading">
+              Panfleto Oficial de Soluções
+            </h2>
+            <p className="text-slate-600 text-xs md:text-sm mt-3 max-w-xl mx-auto leading-relaxed">
+              Consulte diretamente no site o nosso material informativo oficial. Explore as principais soluções em grupos geradores, atendimento técnico especializado e contratos de manutenção sem necessidade de downloads obrigatórios.
+            </p>
+          </div>
+
+          {/* Interactive full-width responsive reader container */}
+          <div className="bg-white rounded-3xl p-3 md:p-6 shadow-xl border border-slate-200/80 mb-8 relative overflow-hidden">
+            <div className="absolute top-4 right-4 bg-slate-900/5 text-slate-700 text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
+              Alta Resolução
+            </div>
+
+            <div className="w-full flex flex-col items-center">
+              {/* Embed if PDF, else render high-resolution full image */}
+              <img 
+                src="https://i.postimg.cc/50TLPv7L/Whats-App-Image-2026-07-22-at-15-05-58.jpg" 
+                alt="Panfleto Oficial Iguaçu Geradores"
+                className="w-full h-auto max-w-full rounded-2xl object-contain shadow-sm border border-slate-100"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+          </div>
+
+          {/* Bottom Call-to-actions */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a
+              href="https://i.postimg.cc/50TLPv7L/Whats-App-Image-2026-07-22-at-15-05-58.jpg"
+              download="Panfleto_Oficial_Iguacu_Geradores.jpg"
+              className="inline-flex items-center gap-2 bg-brand-blue hover:bg-brand-blue/90 text-white font-extrabold py-3.5 px-6 rounded-xl text-xs uppercase tracking-widest transition-all shadow-lg shadow-brand-blue/15 cursor-pointer w-full sm:w-auto justify-center"
+            >
+              <Download className="w-4 h-4" />
+              <span>Baixar Panfleto em PDF</span>
+            </a>
+            <a
+              href="https://wa.me/5545999299311?text=Olá,%20Iguaçu%20Geradores!%20Gostaria%20de%20conversar%20sobre%20as%20soluções%20apresentadas%20no%20seu%20panfleto%20oficial."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 hover:border-slate-300 font-extrabold py-3.5 px-6 rounded-xl text-xs uppercase tracking-widest transition-all shadow-sm cursor-pointer w-full sm:w-auto justify-center"
+            >
+              <MessageSquare className="w-4 h-4 text-brand-green" />
+              <span>Falar com um Consultor</span>
+            </a>
+          </div>
         </div>
       </section>
 
