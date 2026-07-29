@@ -10,18 +10,6 @@ interface PecasViewProps {
 }
 
 export default function PecasView({ scrollToSection }: PecasViewProps) {
-  const partBrands = [
-    { name: 'Baudouin', type: 'Motores Diesel' },
-    { name: 'Cummins', type: 'Motores Diesel' },
-    { name: 'WEG', type: 'Alternadores & Painéis' },
-    { name: 'MWM', type: 'Motores de Alta Performance' },
-    { name: 'Volvo Penta', type: 'Motores Marítimos e Geradores' },
-    { name: 'Perkins', type: 'Motores Industriais' },
-    { name: 'Scania', type: 'Motores de Carga Pesada' },
-    { name: 'Yanmar', type: 'Motores Compactos' },
-    { name: 'FPT', type: 'Sistemas de Energia e Propulsão' }
-  ];
-
   return (
     <div className="flex-1 flex flex-col bg-slate-50">
       
@@ -54,33 +42,6 @@ export default function PecasView({ scrollToSection }: PecasViewProps) {
               <h3 className="font-extrabold text-slate-800 text-xs md:text-sm uppercase tracking-wide">Consultoria Técnica Gratuita</h3>
               <p className="text-xs text-slate-500 mt-1 leading-relaxed">Nossa equipe de engenheiros auxilia você a identificar o código correto do componente ideal.</p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. BRANDS SHOWCASE */}
-      <section className="py-16 px-4 bg-white border-t border-b border-slate-200/60">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-10">
-            <span className="text-brand-blue text-xs font-bold tracking-widest uppercase block mb-1">Compatibilidade Total</span>
-            <h3 className="text-xl md:text-2xl font-black text-slate-900 uppercase tracking-tight font-heading">
-              Atendemos as Principais Marcas Globais
-            </h3>
-            <p className="text-slate-500 text-xs md:text-sm mt-1.5">Fornecemos peças compatíveis e originais com garantia para os seguintes fabricantes:</p>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-9 gap-4">
-            {partBrands.map((brand, bIdx) => (
-              <div 
-                key={bIdx}
-                className="bg-slate-50 rounded-xl p-4 border border-slate-200/50 flex flex-col justify-center items-center text-center hover:bg-slate-100/75 hover:border-brand-blue/10 transition-all min-h-[90px]"
-              >
-                <span className="font-heading font-black text-sm text-slate-800 tracking-tight">{brand.name}</span>
-                <span className="text-[9px] text-slate-400 uppercase font-bold tracking-wider mt-1 block truncate max-w-full">
-                  {brand.type}
-                </span>
-              </div>
-            ))}
           </div>
         </div>
       </section>
