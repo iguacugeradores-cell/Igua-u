@@ -5,6 +5,7 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
 import Logo from './components/Logo';
+import PecasView from './components/PecasView';
 import { 
   Phone, 
   MessageSquare, 
@@ -96,16 +97,30 @@ export default function App() {
       buttonText: 'Atendimento Especializado',
       actionCategory: 'geradores',
       bgGradient: 'from-brand-dark via-brand-blue to-slate-900',
+    },
+    {
+      title: 'Peças Originais e Acessórios de Reposição',
+      subtitle: (
+        <span className="block space-y-1.5 font-normal">
+          <span className="flex items-center gap-2">✔ Filtros de óleo, combustível e ar das melhores marcas</span>
+          <span className="flex items-center gap-2">✔ Sensores, AVRs, painéis e componentes elétricos</span>
+          <span className="flex items-center gap-2">✔ Estoque à pronta-entrega para reposição imediata.</span>
+        </span>
+      ),
+      badge: 'PEÇAS ORIGINAIS • PRONTA-ENTREGA',
+      buttonText: 'Solicitar Peças',
+      actionCategory: 'pecas',
+      bgGradient: 'from-slate-950 via-brand-blue to-brand-dark',
     }
   ];
 
-  // Auto Hero Slider
+  // Auto Hero Slider timer
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveSlide((prev) => (prev + 1) % heroSlides.length);
     }, 6000);
     return () => clearInterval(timer);
-  }, []);
+  }, [heroSlides.length]);
 
   // Sync Cart with LocalStorage on Mount
   useEffect(() => {
@@ -301,13 +316,41 @@ export default function App() {
             </div>
           </div>
 
-          {/* Custom Project Badge instead of Search bar */}
-          <div className="hidden lg:flex flex-1 max-w-sm justify-center items-center" id="header-project-badge">
-            <span className="text-xs bg-slate-100 text-slate-600 font-semibold px-4 py-2 rounded-full border border-slate-200/50 flex items-center gap-2">
-              <Zap className="w-3.5 h-3.5 text-brand-blue" />
-              Projetos de Geração de Energia Sob Medida
-            </span>
-          </div>
+          {/* Desktop Navigation Links / Tabs */}
+          <nav className="hidden lg:flex items-center gap-6 font-bold text-xs uppercase tracking-wider" id="header-navigation-menu">
+            <button 
+              onClick={() => {
+                scrollToSection('catalogo');
+              }}
+              className="py-1.5 px-3 rounded-lg text-slate-600 hover:text-brand-blue hover:bg-slate-50 transition-all cursor-pointer"
+            >
+              Geradores
+            </button>
+            <button 
+              onClick={() => {
+                scrollToSection('pecas');
+              }}
+              className="py-1.5 px-3 rounded-lg text-slate-600 hover:text-brand-blue hover:bg-slate-50 transition-all cursor-pointer"
+            >
+              Peças
+            </button>
+            <button 
+              onClick={() => {
+                scrollToSection('contratos-manutencao');
+              }}
+              className="py-1.5 px-3 rounded-lg text-slate-600 hover:text-brand-blue hover:bg-slate-50 transition-all cursor-pointer"
+            >
+              Serviços
+            </button>
+            <button 
+              onClick={() => {
+                scrollToSection('faq');
+              }}
+              className="py-1.5 px-3 rounded-lg text-slate-600 hover:text-brand-blue hover:bg-slate-50 transition-all cursor-pointer"
+            >
+              FAQ
+            </button>
+          </nav>
 
           {/* Contact & Quote Cart Widget */}
           <div className="flex items-center gap-4 md:gap-6">
@@ -384,7 +427,53 @@ export default function App() {
                   </button>
                 </div>
 
-                <div className="mt-8 border-t border-slate-100 pt-6 space-y-4">
+                <div className="mt-6 border-t border-slate-100 pt-5 space-y-3">
+                  <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Navegação</p>
+                  <div className="flex flex-col gap-1.5">
+                    <button 
+                      onClick={() => {
+                        setIsMobileMenuOpen(false);
+                        scrollToSection('catalogo');
+                      }}
+                      className="flex items-center gap-2.5 text-xs font-bold uppercase tracking-wider py-2 px-3 rounded-lg w-full text-left transition-all cursor-pointer text-slate-700 hover:bg-slate-50"
+                    >
+                      <Zap className="w-4 h-4 text-brand-blue" />
+                      <span>Geradores</span>
+                    </button>
+                    <button 
+                      onClick={() => {
+                        setIsMobileMenuOpen(false);
+                        scrollToSection('pecas');
+                      }}
+                      className="flex items-center gap-2.5 text-xs font-bold uppercase tracking-wider py-2 px-3 rounded-lg w-full text-left transition-all cursor-pointer text-slate-700 hover:bg-slate-50"
+                    >
+                      <Package className="w-4 h-4 text-brand-red" />
+                      <span>Peças</span>
+                    </button>
+                    <button 
+                      onClick={() => {
+                        setIsMobileMenuOpen(false);
+                        scrollToSection('contratos-manutencao');
+                      }}
+                      className="flex items-center gap-2.5 text-xs font-bold uppercase tracking-wider py-2 px-3 rounded-lg text-slate-700 hover:bg-slate-50 w-full text-left transition-all cursor-pointer"
+                    >
+                      <Wrench className="w-4 h-4 text-slate-500" />
+                      <span>Serviços</span>
+                    </button>
+                    <button 
+                      onClick={() => {
+                        setIsMobileMenuOpen(false);
+                        scrollToSection('faq');
+                      }}
+                      className="flex items-center gap-2.5 text-xs font-bold uppercase tracking-wider py-2 px-3 rounded-lg text-slate-700 hover:bg-slate-50 w-full text-left transition-all cursor-pointer"
+                    >
+                      <Info className="w-4 h-4 text-slate-500" />
+                      <span>FAQ</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div className="mt-6 border-t border-slate-100 pt-5 space-y-3">
                   <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Suporte & Contato</p>
                   <div className="space-y-2">
                     <a href="tel:+5545999299311" className="flex items-center gap-2 text-sm text-slate-700 hover:text-brand-blue font-medium">
@@ -418,8 +507,8 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* 4. HERO SECTION WITH CAROUSEL */}
-      <section className="relative overflow-hidden bg-brand-dark min-h-[520px] lg:min-h-[620px] flex items-center" id="top">
+          {/* 4. HERO SECTION WITH CAROUSEL */}
+          <section className="relative overflow-hidden bg-brand-dark min-h-[520px] lg:min-h-[620px] flex items-center" id="top">
         {/* Background Visual Animations & Generated Image for Slide 0 */}
         <div className="absolute inset-0 z-0 transition-all duration-700">
           {activeSlide === 0 ? (
@@ -586,8 +675,12 @@ export default function App() {
                   <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center pt-2">
                     <button
                       onClick={() => {
-                        setSelectedCategory(heroSlides[activeSlide].actionCategory);
-                        scrollToSection('catalogo');
+                        if (heroSlides[activeSlide].actionCategory === 'pecas') {
+                          scrollToSection('pecas');
+                        } else {
+                          setSelectedCategory(heroSlides[activeSlide].actionCategory);
+                          scrollToSection('catalogo');
+                        }
                       }}
                       className="bg-brand-red text-slate-900 hover:bg-brand-red/95 px-8 py-4 rounded-xl text-sm md:text-base font-extrabold shadow-lg shadow-brand-red/20 hover:shadow-brand-red/45 transition-all text-center flex items-center justify-center gap-2 group cursor-pointer"
                     >
@@ -860,272 +953,9 @@ export default function App() {
         </div>
       </section>
 
-      {/* 9. MAINTENANCE & SUPPORT SERVICE INFORMATION */}
-      <section className="py-20 px-4 bg-gradient-to-b from-white to-slate-50 relative overflow-hidden" id="servicos-info">
-        {/* Absolute visuals */}
-        <div className="absolute top-1/2 left-0 w-80 h-80 rounded-full bg-brand-blue/5 filter blur-[100px] pointer-events-none"></div>
-        <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-brand-red/5 filter blur-[100px] pointer-events-none"></div>
 
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
-          
-          {/* Left Text Detail */}
-          <div className="lg:col-span-7 space-y-6 flex flex-col justify-center">
-            <div>
-              <span className="text-brand-blue text-xs font-bold tracking-widest uppercase block">Energia Sem Interrupções</span>
-              <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight leading-tight font-heading mt-1">
-                Energia Ininterrupta para Empresas, Indústrias, Agronegócio e Residências
-              </h2>
-            </div>
-            <p className="text-slate-600 text-xs md:text-sm leading-relaxed">
-              A <strong className="font-bold text-brand-blue">Iguaçu Geradores</strong> é referência na venda de grupos geradores conforme dimensionamento técnico preciso, projetados sob medida para a sua demanda. Oferecemos grupos geradores personalizados, com ou sem cabine, dimensionados de acordo com a necessidade de cada cliente. Trabalhamos com equipamentos de alta qualidade e realizamos a instalação completa, do projeto à entrega.
-            </p>
 
-            {/* List of guarantees */}
-            <div className="space-y-4 pt-1 flex-1">
-              <div className="flex gap-3">
-                <div className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center shrink-0 mt-0.5">
-                  <Check className="w-3.5 h-3.5 stroke-[3px]" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-slate-800 text-xs uppercase tracking-wide">Manutenções Preventivas Programadas</h4>
-                  <p className="text-[11px] text-slate-500 leading-relaxed mt-0.5">
-                    Realizamos planos de manutenção preventiva personalizados, definidos conforme a necessidade de cada cliente, modelo do equipamento e importância da aplicação.
-                  </p>
-                </div>
-              </div>
 
-              <div className="flex gap-3">
-                <div className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center shrink-0 mt-0.5">
-                  <Check className="w-3.5 h-3.5 stroke-[3px]" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-slate-800 text-xs uppercase tracking-wide">Plantão de Emergência 24 Horas</h4>
-                  <p className="text-[11px] text-slate-500 mt-0.5">Atendimento rápido em todo o estado para solucionar panes elétricas ou falhas na inicialização do gerador.</p>
-                </div>
-              </div>
-
-              <div className="flex gap-3">
-                <div className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center shrink-0 mt-0.5">
-                  <Check className="w-3.5 h-3.5 stroke-[3px]" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-slate-800 text-xs uppercase tracking-wide">Sistemas de Transferência Automática (QTA)</h4>
-                  <p className="text-[11px] text-slate-500 mt-0.5">Projetamos, instalamos e comissionamos quadros QTA para acionamento automático, garantindo transferência rápida e segura.</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex flex-wrap gap-2.5 pt-3">
-              <a
-                href="https://wa.me/5545999299311?text=Olá,%20Iguaçu%20Geradores!%20Gostaria%20de%20solicitar%20uma%20visita%20técnica%20de%20manutenção."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-brand-red text-slate-900 font-extrabold px-5 py-3 rounded-xl text-xs shadow-sm hover:bg-brand-red/90 transition-all flex items-center gap-1.5 cursor-pointer"
-              >
-                <Wrench className="w-3.5 h-3.5 text-slate-900" />
-                Agendar Visita
-              </a>
-              <button
-                onClick={() => {
-                  scrollToSection('contratos-manutencao');
-                }}
-                className="bg-slate-100 text-slate-700 font-bold px-5 py-3 rounded-xl text-xs hover:bg-slate-200 transition-all"
-              >
-                Contratos de Manutenção
-              </button>
-            </div>
-          </div>
-
-          {/* Right Lead Form Container */}
-          <div className="lg:col-span-5 bg-white rounded-3xl p-6 border border-slate-200/70 shadow-lg relative flex flex-col justify-center">
-            <div className="absolute top-4 right-4 bg-brand-blue/10 text-brand-blue text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
-              Plantão Ativo
-            </div>
-
-            <h3 className="text-lg md:text-xl font-bold text-slate-900 tracking-tight mb-2">
-              Solicite uma Consultoria Técnica ou Agende sua Revisão
-            </h3>
-            <p className="text-xs text-slate-500 mb-6">
-              Preencha os campos abaixo para que nosso especialista entre em contato via ligação ou WhatsApp.
-            </p>
-
-            {leadSubmitted ? (
-              <div className="text-center py-8 space-y-4">
-                <div className="w-16 h-16 bg-emerald-100 text-brand-green rounded-full flex items-center justify-center mx-auto shadow-md">
-                  <Check className="w-9 h-9 stroke-[3px]" />
-                </div>
-                <h4 className="text-lg font-extrabold text-slate-900 font-heading">Sua Solicitação foi Registrada!</h4>
-                <p className="text-xs text-slate-600 leading-relaxed max-w-sm mx-auto">
-                  Olá <strong className="font-bold text-slate-800">{leadName}</strong>, recebemos seus dados de contato. Para falar com o plantão emergencial agora mesmo, clique no botão verde abaixo para abrir o chat seguro do WhatsApp:
-                </p>
-                <div className="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <a
-                    href={`https://wa.me/5545999299311?text=${encodeURIComponent(
-                      `Olá, Iguaçu Geradores!\n` +
-                      `Acabei de preencher o formulário de consultoria técnica rápida no site:\n\n` +
-                      `*Nome:* ${leadName}\n` +
-                      `*Telefone:* ${leadPhone}\n` +
-                      `*E-mail:* ${leadEmail || 'Não informado'}\n` +
-                      `*Mensagem:* ${leadMessage || 'Solicito contato para manutenção/peças.'}`
-                    )}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full bg-brand-green hover:bg-green-600 text-white font-extrabold py-3 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-all shadow-lg shadow-green-500/20 cursor-pointer block text-center uppercase tracking-wide"
-                  >
-                    <MessageSquare className="w-4 h-4 fill-current shrink-0" />
-                    <span>WhatsApp 1</span>
-                  </a>
-                  <a
-                    href={`https://wa.me/5545999979650?text=${encodeURIComponent(
-                      `Olá, Iguaçu Geradores!\n` +
-                      `Acabei de preencher o formulário de consultoria técnica rápida no site:\n\n` +
-                      `*Nome:* ${leadName}\n` +
-                      `*Telefone:* ${leadPhone}\n` +
-                      `*E-mail:* ${leadEmail || 'Não informado'}\n` +
-                      `*Mensagem:* ${leadMessage || 'Solicito contato para manutenção/peças.'}`
-                    )}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full bg-brand-green hover:bg-green-600 text-white font-extrabold py-3 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-all shadow-lg shadow-green-500/20 cursor-pointer block text-center uppercase tracking-wide"
-                  >
-                    <MessageSquare className="w-4 h-4 fill-current shrink-0" />
-                    <span>WhatsApp 2</span>
-                  </a>
-                </div>
-                <button
-                  onClick={() => {
-                    setLeadName('');
-                    setLeadPhone('');
-                    setLeadEmail('');
-                    setLeadMessage('');
-                    setLeadSubmitted(false);
-                  }}
-                  className="text-xs text-slate-400 hover:text-brand-blue font-bold block mx-auto underline pt-2"
-                >
-                  Fazer outra solicitação
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleLeadSubmit} className="space-y-4">
-                <div>
-                  <label className="text-xs font-bold text-slate-500 uppercase block mb-1">Seu Nome / Razão Social *</label>
-                  <input
-                    id="lead-form-name"
-                    type="text"
-                    required
-                    placeholder="Ex: João da Silva / Hospital Central"
-                    value={leadName}
-                    onChange={(e) => setLeadName(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:bg-white focus:outline-none focus:ring-1 focus:ring-brand-blue"
-                  />
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-xs font-bold text-slate-500 uppercase block mb-1">Telefone WhatsApp *</label>
-                    <input
-                      type="tel"
-                      required
-                      placeholder="Ex: (51) 99999-9999"
-                      value={leadPhone}
-                      onChange={(e) => setLeadPhone(e.target.value)}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:bg-white focus:outline-none focus:ring-1 focus:ring-brand-blue"
-                    />
-                  </div>
-                  <div>
-                    <label className="text-xs font-bold text-slate-500 uppercase block mb-1">E-mail de Contato</label>
-                    <input
-                      type="email"
-                      placeholder="Ex: contato@empresa.com"
-                      value={leadEmail}
-                      onChange={(e) => setLeadEmail(e.target.value)}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:bg-white focus:outline-none focus:ring-1 focus:ring-brand-blue"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="text-xs font-bold text-slate-500 uppercase block mb-1">Descreva sua Necessidade</label>
-                  <textarea
-                    id="lead-form-message"
-                    rows={3}
-                    placeholder="Ex: Preciso de cotação de filtros para gerador Baudouin de 150kva, ou agendar preventivo."
-                    value={leadMessage}
-                    onChange={(e) => setLeadMessage(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:bg-white focus:outline-none focus:ring-1 focus:ring-brand-blue resize-none"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={leadSubmitted}
-                  className={`w-full font-bold py-3 px-4 rounded-xl text-sm text-white flex items-center justify-center gap-2 transition-all cursor-pointer ${
-                    leadSubmitted ? 'bg-slate-400' : 'bg-brand-blue hover:bg-brand-blue/95 shadow-lg shadow-brand-blue/15'
-                  }`}
-                  id="btn-lead-submit"
-                >
-                  <Send className="w-4 h-4" />
-                  <span>Iniciar Atendimento</span>
-                </button>
-              </form>
-            )}
-          </div>
-
-        </div>
-      </section>
-
-      {/* SECTION: PANFLETO OFICIAL DE SOLUÇÕES */}
-      <section className="py-20 px-4 bg-slate-50 border-t border-b border-slate-200/60 relative overflow-hidden" id="panfleto-oficial">
-        <div className="absolute top-0 left-1/4 w-96 h-96 rounded-full bg-brand-blue/5 filter blur-[120px] pointer-events-none"></div>
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 rounded-full bg-brand-red/5 filter blur-[120px] pointer-events-none"></div>
-
-        <div className="max-w-4xl mx-auto relative z-10">
-          <div className="text-center mb-10">
-            <span className="text-brand-blue text-xs font-bold tracking-widest uppercase block mb-2">Especificações e Serviços</span>
-            <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight font-heading">
-              Panfleto Oficial de Soluções
-            </h2>
-          </div>
-
-          {/* Interactive full-width responsive reader container */}
-          <div className="bg-white rounded-3xl p-3 md:p-6 shadow-xl border border-slate-200/80 mb-8 relative overflow-hidden">
-            <div className="absolute top-4 right-4 bg-slate-900/5 text-slate-700 text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
-              Alta Resolução
-            </div>
-
-            <div className="w-full flex flex-col items-center">
-              {/* Embed if PDF, else render high-resolution full image */}
-              <img 
-                src="https://i.postimg.cc/50TLPv7L/Whats-App-Image-2026-07-22-at-15-05-58.jpg" 
-                alt="Panfleto Oficial Iguaçu Geradores"
-                className="w-full h-auto max-w-full rounded-2xl object-contain shadow-sm border border-slate-100"
-                referrerPolicy="no-referrer"
-              />
-            </div>
-          </div>
-
-          {/* Bottom Call-to-actions */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href="https://i.postimg.cc/50TLPv7L/Whats-App-Image-2026-07-22-at-15-05-58.jpg"
-              download="Panfleto_Oficial_Iguacu_Geradores.jpg"
-              className="inline-flex items-center gap-2 bg-brand-blue hover:bg-brand-blue/90 text-white font-extrabold py-3.5 px-6 rounded-xl text-xs uppercase tracking-widest transition-all shadow-lg shadow-brand-blue/15 cursor-pointer w-full sm:w-auto justify-center"
-            >
-              <Download className="w-4 h-4" />
-              <span>Baixar Panfleto em PDF</span>
-            </a>
-            <a
-              href="https://wa.me/5545999299311?text=Olá,%20Iguaçu%20Geradores!%20Gostaria%20de%20conversar%20sobre%20as%20soluções%20apresentadas%20no%20seu%20panfleto%20oficial."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 hover:border-slate-300 font-extrabold py-3.5 px-6 rounded-xl text-xs uppercase tracking-widest transition-all shadow-sm cursor-pointer w-full sm:w-auto justify-center"
-            >
-              <MessageSquare className="w-4 h-4 text-brand-green" />
-              <span>Falar com um Consultor</span>
-            </a>
-          </div>
-        </div>
-      </section>
 
       {/* NEW SECTION: PERSONALIZED MAINTENANCE CONTRACTS */}
       <section className="py-20 px-4 bg-slate-900 text-white relative overflow-hidden" id="contratos-manutencao">
@@ -1157,50 +987,9 @@ export default function App() {
         </div>
       </section>
 
-      {/* 10. REAL CUSTOMER TESTIMONIALS */}
-      <section className="py-16 px-4 bg-white border-t border-slate-100" id="depoimentos">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <span className="text-brand-blue text-xs font-bold tracking-widest uppercase block mb-2">Quem Confia</span>
-            <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight font-heading">
-              O Que Nossos Clientes Dizem
-            </h2>
-            <p className="text-slate-500 text-sm mt-2 max-w-lg mx-auto">
-              Empresas, comércios e condomínios residenciais que contam com o suporte de energia da Iguaçu Geradores.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {TESTIMONIALS.map((testimonial) => (
-              <div 
-                key={testimonial.id} 
-                className="bg-slate-50 rounded-2xl p-6 border border-slate-200/50 flex flex-col justify-between"
-              >
-                <div>
-                  {/* Rating stars */}
-                  <div className="flex gap-0.5 text-amber-400 mb-4">
-                    {Array.from({ length: testimonial.rating }).map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-current text-amber-400" />
-                    ))}
-                  </div>
-                  
-                  {/* Text quote */}
-                  <p className="text-slate-600 text-sm italic leading-relaxed mb-6">
-                    "{testimonial.text}"
-                  </p>
-                </div>
-
-                <div className="flex justify-between items-center pt-4 border-t border-slate-200/40">
-                  <div>
-                    <h4 className="font-bold text-slate-800 text-sm leading-none">{testimonial.name}</h4>
-                    <span className="text-xs text-slate-400 font-medium block mt-1">{testimonial.company}</span>
-                  </div>
-                  <span className="text-[10px] text-slate-400 font-mono">{testimonial.date}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+      {/* 10. SEÇÃO DE PEÇAS ORIGINAIS */}
+      <section id="pecas" className="scroll-mt-20">
+        <PecasView scrollToSection={scrollToSection} />
       </section>
 
       {/* 11. INTERACTIVE FAQ SECTION */}
@@ -1297,14 +1086,13 @@ export default function App() {
             <h3 className="font-heading font-extrabold text-white text-sm uppercase tracking-wider mb-6 border-l-2 border-brand-red pl-2">
               Institucional
             </h3>
-            <ul className="space-y-3 text-xs text-slate-400 font-medium">
-              <li><button onClick={() => scrollToSection('top')} className="hover:text-white transition-colors">Sobre a Empresa</button></li>
-              <li><button onClick={() => scrollToSection('catalogo')} className="hover:text-white transition-colors">Catálogo de Geradores</button></li>
-              <li><button onClick={() => scrollToSection('faq')} className="hover:text-white transition-colors">Garantia & Devoluções</button></li>
-              <li><button onClick={() => { setSelectedCategory('geradores'); scrollToSection('catalogo'); }} className="hover:text-white transition-colors">Grupos Geradores</button></li>
-              <li><button onClick={() => scrollToSection('servicos-info')} className="hover:text-white transition-colors">Revisão e Manutenção</button></li>
-              <li><button onClick={() => scrollToSection('faq')} className="hover:text-white transition-colors">Perguntas Frequentes</button></li>
-              <li><button onClick={() => scrollToSection('servicos-info')} className="hover:text-white transition-colors">Fale Conosco</button></li>
+            <ul className="space-y-3 text-xs text-slate-400 font-medium text-left">
+              <li><button onClick={() => scrollToSection('top')} className="hover:text-white transition-colors cursor-pointer">Sobre a Empresa</button></li>
+              <li><button onClick={() => { setSelectedCategory('geradores'); scrollToSection('catalogo'); }} className="hover:text-white transition-colors cursor-pointer">Grupos Geradores</button></li>
+              <li><button onClick={() => scrollToSection('pecas')} className="hover:text-white transition-colors cursor-pointer">Peças Genuínas</button></li>
+              <li><button onClick={() => scrollToSection('contratos-manutencao')} className="hover:text-white transition-colors cursor-pointer">Contratos de Manutenção</button></li>
+              <li><button onClick={() => scrollToSection('faq')} className="hover:text-white transition-colors cursor-pointer">Perguntas Frequentes (FAQ)</button></li>
+              <li><button onClick={() => scrollToSection('servicos-info')} className="hover:text-white transition-colors cursor-pointer">Fale Conosco</button></li>
             </ul>
           </div>
 
