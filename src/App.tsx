@@ -102,7 +102,7 @@ export default function App() {
       title: 'Peças Originais e Acessórios de Reposição',
       subtitle: (
         <span className="block space-y-1.5 font-normal">
-          <span className="flex items-center gap-2">✔ Filtros de óleo, combustível e ar das melhores marcas</span>
+          <span className="flex items-center gap-2">✔ Filtros de ar e componentes de alta performance</span>
           <span className="flex items-center gap-2">✔ Sensores, AVRs, painéis e componentes elétricos</span>
           <span className="flex items-center gap-2">✔ Estoque à pronta-entrega para reposição imediata.</span>
         </span>
