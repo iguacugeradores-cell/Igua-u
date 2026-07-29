@@ -113,14 +113,6 @@ export default function App() {
     }
   ];
 
-  // Auto Hero Slider timer
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 6000);
-    return () => clearInterval(timer);
-  }, [heroSlides.length]);
-
   // Sync Cart with LocalStorage on Mount
   useEffect(() => {
     const savedCart = localStorage.getItem('iguacu_geradores_cart');
