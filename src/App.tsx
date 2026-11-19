@@ -815,15 +815,19 @@ export default function App() {
                 </div>
                 
                 <h2 className="text-3xl md:text-5xl font-black text-slate-950 tracking-tight leading-none uppercase font-heading">
-                  GRUPO GERADOR DIESEL SOB MEDIDA
+                  GRUPOS GERADORES DIESEL PERSONALIZADOS
                 </h2>
 
                 <p className="text-slate-600 text-sm md:text-base leading-relaxed">
-                  Desenvolvemos sistemas de geração de energia com configurações personalizadas para cada aplicação. Os grupos geradores podem ser fornecidos em versão aberta ou com cabine acústica, dimensionada para atender requisitos de instalação, operação e controle de ruído.
+                  A <strong className="font-bold text-brand-blue">Iguaçu Geradores</strong> desenvolve, monta e fornece grupos geradores diesel, com projetos dimensionados de acordo com a necessidade de cada operação. Trabalhamos com soluções personalizadas, considerando a demanda energética, as características do local de instalação e as condições de funcionamento de cada aplicação.
+                </p>
+
+                <p className="text-slate-600 text-sm md:text-base leading-relaxed">
+                  Os equipamentos podem ser configurados na versão aberta ou com cabine acústica, além de contar com diferentes opções de montagem, sistemas de comando e acessórios, proporcionando confiabilidade, eficiência e segurança na geração de energia.
                 </p>
 
                 <p className="text-slate-600 text-sm md:text-base leading-relaxed font-semibold">
-                  A <strong className="font-bold text-brand-blue">Iguaçu Geradores</strong> não trabalha com uma lista fixa de equipamentos padronizados. Realizamos o levantamento técnico detalhado e desenvolvemos projetos totalmente personalizados para atender perfeitamente aos seguintes setores:
+                  Atendemos diversos segmentos, oferecendo soluções adequadas às particularidades de cada projeto.
                 </p>
               </div>
 
