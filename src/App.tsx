@@ -77,26 +77,12 @@ export default function App() {
   // Hero Slides
   const heroSlides = [
     {
-      title: 'Sua Energia Não Pode Parar!',
-      subtitle: 'Soluções completas em grupos geradores para empresas, indústrias, agronegócio e residências. Energia confiável, venda com dimensionamento técnico preciso, instalação completa e suporte especializado.',
-      badge: 'ENERGIA CONFIÁVEL • OPERAÇÃO SEM PARADAS',
-      buttonText: 'Falar com Especialista',
+      title: 'FABRICAÇÃO E MONTAGEM DE GRUPOS GERADORES SOB MEDIDA',
+      subtitle: 'Desenvolvemos soluções em geração de energia de acordo com a necessidade de cada operação, com qualidade, tecnologia e confiabilidade.',
+      badge: 'FABRICAÇÃO PRÓPRIA • PROJETOS SOB MEDIDA',
+      buttonText: 'SOLICITE SEU PROJETO',
       actionCategory: 'geradores',
       bgGradient: 'from-brand-blue via-brand-blue/90 to-brand-dark',
-    },
-    {
-      title: 'Seu Gerador Sempre Pronto para Operar',
-      subtitle: (
-        <span className="block space-y-1.5 font-normal">
-          <span className="flex items-center gap-2">✔ Contratos de manutenção personalizados</span>
-          <span className="flex items-center gap-2">✔ Manutenções preventivas programadas</span>
-          <span className="flex items-center gap-2">✔ Atendimento corretivo especializado.</span>
-        </span>
-      ),
-      badge: 'SUPORTE TÉCNICO ESPECIALIZADO 24H',
-      buttonText: 'Atendimento Especializado',
-      actionCategory: 'geradores',
-      bgGradient: 'from-brand-dark via-brand-blue to-slate-900',
     },
     {
       title: 'Peças Originais e Acessórios de Reposição',
@@ -110,6 +96,20 @@ export default function App() {
       buttonText: 'Solicitar Peças',
       actionCategory: 'pecas',
       bgGradient: 'from-slate-950 via-brand-blue to-brand-dark',
+    },
+    {
+      title: 'Manutenção Preventiva, Corretiva e Plantão 24h',
+      subtitle: (
+        <span className="block space-y-1.5 font-normal">
+          <span className="flex items-center gap-2">✔ Manutenções preventivas programadas</span>
+          <span className="flex items-center gap-2">✔ Atendimento corretivo especializado</span>
+          <span className="flex items-center gap-2">✔ Assistência técnica e plantão 24 horas.</span>
+        </span>
+      ),
+      badge: 'SUPORTE TÉCNICO ESPECIALIZADO 24H',
+      buttonText: 'Atendimento Especializado',
+      actionCategory: 'geradores',
+      bgGradient: 'from-brand-dark via-brand-blue to-slate-900',
     }
   ];
 
@@ -543,8 +543,8 @@ export default function App() {
                     </div>
 
                     {/* Headline */}
-                    <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.05] font-heading uppercase">
-                      Sua Energia <span className="text-brand-red font-black">Não Pode Parar!</span>
+                    <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-[1.08] font-heading uppercase">
+                      FABRICAÇÃO E MONTAGEM DE <span className="text-brand-red font-black">GRUPOS GERADORES SOB MEDIDA</span>
                     </h1>
 
                     {/* Slogan */}
@@ -552,13 +552,13 @@ export default function App() {
                       {heroSlides[0].subtitle}
                     </p>
 
-                    {/* 4 Pillars Grid */}
+                    {/* 4 Pillars Grid - Ordered by service priority */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1 max-w-2xl">
                       {[
-                        { title: 'Energia Contínua', desc: 'Mais segurança para sua operação' },
-                        { title: 'Equipamentos de Qualidade', desc: 'Alta performance e confiabilidade' },
-                        { title: 'Suporte Especializado', desc: 'Atendimento rápido e eficiente' },
-                        { title: 'Plantão 24h', desc: 'Atendimento sempre que precisar' }
+                        { title: 'Fabricação e Montagem', desc: 'Grupos geradores diesel sob medida' },
+                        { title: 'Peças e Componentes', desc: 'Fornecimento completo com garantia' },
+                        { title: 'Manutenção Preventiva e Corretiva', desc: 'Planos programados e corretivos' },
+                        { title: 'Assistência Técnica e Plantão 24h', desc: 'Atendimento sempre que precisar' }
                       ].map((pillar, index) => (
                         <div key={index} className="flex gap-2.5 items-start bg-brand-dark/60 p-3 rounded-xl border border-white/5 backdrop-blur-xs">
                           <div className="w-5 h-5 bg-brand-red/20 text-brand-red rounded-full flex items-center justify-center shrink-0 mt-0.5">
@@ -581,13 +581,13 @@ export default function App() {
                     {/* CTA Buttons */}
                     <div className="flex flex-col sm:flex-row gap-3 pt-2">
                       <a
-                        href="https://wa.me/5545999979650?text=Olá!%20Gostaria%20de%20falar%20com%20um%20especialista%20da%20Iguaçu%20Geradores%20para%20dimensionar%20um%20projeto."
+                        href="https://wa.me/5545999299311?text=Olá!%20Gostaria%20de%20solicitar%20um%20projeto%20de%20grupo%20gerador%20sob%20medida%20com%20a%20Iguaçu%20Geradores."
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-brand-green hover:bg-green-600 text-white font-black px-7 py-4 rounded-xl text-xs uppercase tracking-wider shadow-lg transition-all text-center flex items-center justify-center gap-2 group cursor-pointer"
+                        className="bg-brand-red hover:bg-brand-red/95 text-slate-900 font-black px-7 py-4 rounded-xl text-xs uppercase tracking-wider shadow-lg shadow-brand-red/20 hover:shadow-brand-red/40 transition-all text-center flex items-center justify-center gap-2 group cursor-pointer"
                       >
-                        <MessageSquare className="w-4.5 h-4.5 fill-current text-white shrink-0" />
-                        <span>Atendimento Especializado</span>
+                        <MessageSquare className="w-4.5 h-4.5 fill-current text-slate-900 shrink-0" />
+                        <span>SOLICITE SEU PROJETO</span>
                       </a>
                       <button
                         onClick={() => {
@@ -622,12 +622,8 @@ export default function App() {
                             <button
                               key={index}
                               onClick={() => {
-                                setLeadMessage('Olá! Gostaria de falar com um especialista sobre soluções de grupos geradores personalizadas.');
-                                scrollToSection('servicos-info');
-                                setTimeout(() => {
-                                  const formEl = document.getElementById('lead-form-name');
-                                  if (formEl) formEl.focus();
-                                }, 800);
+                                setSelectedCategory('geradores');
+                                scrollToSection('catalogo');
                               }}
                               className="w-full text-left bg-white/5 hover:bg-brand-red/10 hover:border-brand-red/40 border border-white/5 p-3 rounded-xl transition-all flex items-center gap-3 group cursor-pointer"
                             >
@@ -716,7 +712,7 @@ export default function App() {
 
       {/* 5. BENEFITS BAR */}
       <section className="bg-white border-b border-slate-100 py-6 md:py-8 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           
           <div className="flex items-center gap-4 p-2">
             <div className="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center text-brand-blue shrink-0">
@@ -724,17 +720,7 @@ export default function App() {
             </div>
             <div>
               <h3 className="font-bold text-slate-800 text-sm md:text-base leading-tight">CONDIÇÕES ESPECIAIS DE PAGAMENTO</h3>
-              <p className="text-xs text-slate-500 mt-0.5">Facilitamos a aquisição do seu grupo gerador com condições personalizadas, possibilidade de financiamento e alternativas de pagamento conforme o projeto e a necessidade de cada cliente.</p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-4 p-2">
-            <div className="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center text-brand-blue shrink-0">
-              <Truck className="w-6 h-6" />
-            </div>
-            <div>
-              <h3 className="font-bold text-slate-800 text-sm md:text-base leading-tight">LOGÍSTICA AGILIZADA</h3>
-              <p className="text-xs text-slate-500 mt-0.5">Retirada rápida ou entrega ágil de peças e acessórios.</p>
+              <p className="text-xs text-slate-500 mt-0.5">Condições personalizadas e alternativas de financiamento conforme o projeto e a necessidade de cada cliente.</p>
             </div>
           </div>
 
@@ -818,59 +804,8 @@ export default function App() {
                 </p>
               </div>
 
-              {/* 2x2 Grid of Targeted Sectors */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
-                <div className="flex gap-4 items-start">
-                  <div className="w-10 h-10 rounded-xl bg-slate-50 text-slate-800 flex items-center justify-center shrink-0 border border-slate-200/60 shadow-sm">
-                    <Building className="w-5 h-5 text-brand-blue" />
-                  </div>
-                  <div>
-                    <h4 className="font-extrabold text-slate-900 text-sm uppercase tracking-wider">Empresas & Comércios</h4>
-                    <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-                      Proteção contra quedas de energia que causam interrupções nas vendas, prejuízos no caixa e desligamento de servidores e climatização.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex gap-4 items-start">
-                  <div className="w-10 h-10 rounded-xl bg-slate-50 text-slate-800 flex items-center justify-center shrink-0 border border-slate-200/60 shadow-sm">
-                    <Factory className="w-5 h-5 text-brand-blue" />
-                  </div>
-                  <div>
-                    <h4 className="font-extrabold text-slate-900 text-sm uppercase tracking-wider">Indústrias</h4>
-                    <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-                      Potência robusta em regime contínuo ou emergência para suportar as demandas de maquinários críticos e garantir a continuidade da linha de produção.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex gap-4 items-start">
-                  <div className="w-10 h-10 rounded-xl bg-slate-50 text-slate-800 flex items-center justify-center shrink-0 border border-slate-200/60 shadow-sm">
-                    <Sprout className="w-5 h-5 text-brand-blue" />
-                  </div>
-                  <div>
-                    <h4 className="font-extrabold text-slate-900 text-sm uppercase tracking-wider">Agronegócio</h4>
-                    <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-                      Dimensionamento ideal para aviários, granjas, silos, ordenhas automáticas e pivôs de irrigação, evitando prejuízos fatais por falta de energia.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex gap-4 items-start">
-                  <div className="w-10 h-10 rounded-xl bg-slate-50 text-slate-800 flex items-center justify-center shrink-0 border border-slate-200/60 shadow-sm">
-                    <Home className="w-5 h-5 text-brand-blue" />
-                  </div>
-                  <div>
-                    <h4 className="font-extrabold text-slate-900 text-sm uppercase tracking-wider">Residências & Condomínios</h4>
-                    <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-                      Conforto completo com silêncio absoluto através de isolamento termoacústico premium e QTA (Painel de Transferência Automática).
-                    </p>
-                  </div>
-                </div>
-              </div>
-
               {/* Unique Action Button with WhatsApp Link targeting project discussion */}
-              <div className="pt-4">
+              <div className="pt-2">
                 <a
                   href={`https://wa.me/5545999299311?text=${encodeURIComponent(
                     `Olá! Gostaria de conversar com um engenheiro técnico da Iguaçu Geradores para realizar o levantamento técnico e solicitar o orçamento de um Grupo Gerador Diesel Sob Medida para a minha necessidade.`
@@ -975,7 +910,12 @@ export default function App() {
 
 
 
-      {/* NEW SECTION: PERSONALIZED MAINTENANCE CONTRACTS */}
+      {/* 9. SEÇÃO DE PEÇAS E COMPONENTES (2ª em ordem de importância) */}
+      <section id="pecas" className="scroll-mt-20">
+        <PecasView scrollToSection={scrollToSection} />
+      </section>
+
+      {/* 10. MANUTENÇÃO PREVENTIVA, CORRETIVA E PLANTÃO 24H (3ª e 4ª em ordem de importância) */}
       <section className="py-20 px-4 bg-slate-900 text-white relative overflow-hidden" id="contratos-manutencao">
         {/* Subtle grid pattern or radial glow background */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(37,99,235,0.08),transparent_50%)]"></div>
@@ -983,12 +923,12 @@ export default function App() {
         
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center max-w-3xl mx-auto">
-            <span className="text-brand-blue text-xs font-bold tracking-widest uppercase block mb-3">CONTRATOS DE MANUTENÇÃO</span>
+            <span className="text-brand-blue text-xs font-bold tracking-widest uppercase block mb-3">MANUTENÇÃO E ASSISTÊNCIA TÉCNICA</span>
             <h2 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight leading-tight font-heading">
-              Planos de Manutenção Preventiva Personalizados
+              Manutenção Preventiva, Corretiva e Plantão 24 Horas
             </h2>
             <p className="text-slate-400 text-sm md:text-base mt-4 leading-relaxed">
-              Garantia de energia 24h por dia, com atendimento prioritário e custos sob controle. Criamos o plano ideal sob medida para a demanda do seu estabelecimento.
+              Planos de manutenção preventiva e corretiva personalizados, com assistência técnica especializada e plantão 24 horas para garantir operação contínua e segura.
             </p>
             <div className="mt-10">
               <a
@@ -1003,11 +943,6 @@ export default function App() {
             </div>
           </div>
         </div>
-      </section>
-
-      {/* 10. SEÇÃO DE PEÇAS ORIGINAIS */}
-      <section id="pecas" className="scroll-mt-20">
-        <PecasView scrollToSection={scrollToSection} />
       </section>
 
       {/* 11. INTERACTIVE FAQ SECTION */}
@@ -1110,7 +1045,7 @@ export default function App() {
               <li><button onClick={() => scrollToSection('pecas')} className="hover:text-white transition-colors cursor-pointer">Peças Genuínas</button></li>
               <li><button onClick={() => scrollToSection('contratos-manutencao')} className="hover:text-white transition-colors cursor-pointer">Contratos de Manutenção</button></li>
               <li><button onClick={() => scrollToSection('faq')} className="hover:text-white transition-colors cursor-pointer">Perguntas Frequentes (FAQ)</button></li>
-              <li><button onClick={() => scrollToSection('servicos-info')} className="hover:text-white transition-colors cursor-pointer">Fale Conosco</button></li>
+              <li><button onClick={() => scrollToSection('footer')} className="hover:text-white transition-colors cursor-pointer">Fale Conosco</button></li>
             </ul>
           </div>
 
