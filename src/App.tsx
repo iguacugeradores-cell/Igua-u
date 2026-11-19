@@ -790,19 +790,6 @@ export default function App() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent"></div>
                 </div>
-
-                {/* Technical Dimensioning Overlay */}
-                <div className="p-6 bg-slate-900 text-white border-t border-slate-800">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-brand-blue/20 text-brand-blue flex items-center justify-center shrink-0 border border-brand-blue/30">
-                      <Zap className="w-5 h-5 text-brand-blue" />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-xs uppercase tracking-wider text-slate-200">Garantia de Entrega Técnica</h4>
-                      <p className="text-[11px] text-slate-400 mt-0.5">Instalação e dimensionamento conduzidos por engenharia especializada.</p>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
 
@@ -899,6 +886,42 @@ export default function App() {
               </div>
             </div>
 
+          </div>
+
+          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                src: '/assets/aistudio/WhatsApp_Image_2026-11-19_at_15.05.23_89b88593.jpeg',
+                alt: 'Linha de montagem de grupos geradores diesel na estrutura da Iguaçu Geradores'
+              },
+              {
+                src: '/assets/aistudio/WhatsApp_Image_2026-11-19_at_15.05.47_408eab2f.jpeg',
+                alt: 'Grupo gerador diesel aberto com grade personalizada Iguaçu Geradores'
+              },
+              {
+                src: '/assets/aistudio/WhatsApp_Image_2026-11-19_at_15.04.43_d5c8287b.jpeg',
+                alt: 'Grupos geradores diesel com painel de comando e controlador digital Iguaçu Geradores'
+              },
+              {
+                src: '/assets/aistudio/WhatsApp_Image_2026-11-19_at_15.15.33_b9f737d6.jpeg',
+                alt: 'Grupo gerador diesel aberto com motor e base metálica Iguaçu Geradores'
+              }
+            ].map((image, idx) => (
+              <div
+                key={idx}
+                className="relative group rounded-3xl overflow-hidden border border-slate-200/60 shadow-xl bg-slate-50 transition-all duration-300 hover:shadow-2xl"
+              >
+                <div className="relative h-64 sm:h-72 w-full overflow-hidden">
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/30 via-transparent to-transparent pointer-events-none"></div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
