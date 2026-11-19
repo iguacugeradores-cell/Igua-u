@@ -54,6 +54,7 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [sortBy, setSortBy] = useState<string>('popular');
   const [activeSlide, setActiveSlide] = useState(0);
+  const [isCarouselPaused, setIsCarouselPaused] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   
   // Quote / Cart State
@@ -74,31 +75,18 @@ export default function App() {
   const [leadSubmitted, setLeadSubmitted] = useState(false);
   const [isWhatsappMenuOpen, setIsWhatsappMenuOpen] = useState(false);
 
-  // Hero Slides
+  // Hero Slides (2 slides: Fabricação/Montagem & Manutenção/Plantão 24h)
   const heroSlides = [
     {
       title: 'FABRICAÇÃO E MONTAGEM DE GRUPOS GERADORES SOB MEDIDA',
       subtitle: 'Desenvolvemos soluções em geração de energia de acordo com a necessidade de cada operação, com qualidade, tecnologia e confiabilidade.',
       badge: 'FABRICAÇÃO PRÓPRIA • PROJETOS SOB MEDIDA',
       buttonText: 'SOLICITE SEU PROJETO',
-      actionCategory: 'geradores',
+      actionTarget: 'catalogo',
       bgGradient: 'from-brand-blue via-brand-blue/90 to-brand-dark',
     },
     {
-      title: 'Peças Originais e Acessórios de Reposição',
-      subtitle: (
-        <span className="block space-y-1.5 font-normal">
-          <span className="flex items-center gap-2">✔ Sensores, AVRs, painéis e componentes elétricos</span>
-          <span className="flex items-center gap-2">✔ Estoque à pronta-entrega para reposição imediata.</span>
-        </span>
-      ),
-      badge: 'PEÇAS ORIGINAIS • PRONTA-ENTREGA',
-      buttonText: 'Solicitar Peças',
-      actionCategory: 'pecas',
-      bgGradient: 'from-slate-950 via-brand-blue to-brand-dark',
-    },
-    {
-      title: 'Manutenção Preventiva, Corretiva e Plantão 24h',
+      title: 'MANUTENÇÃO PREVENTIVA, CORRETIVA E PLANTÃO 24H',
       subtitle: (
         <span className="block space-y-1.5 font-normal">
           <span className="flex items-center gap-2">✔ Manutenções preventivas programadas</span>
@@ -108,10 +96,19 @@ export default function App() {
       ),
       badge: 'SUPORTE TÉCNICO ESPECIALIZADO 24H',
       buttonText: 'Atendimento Especializado',
-      actionCategory: 'geradores',
+      actionTarget: 'contratos-manutencao',
       bgGradient: 'from-brand-dark via-brand-blue to-slate-900',
     }
   ];
+
+  // Auto-advance Hero Carousel every 6 seconds (pauses during user interaction)
+  useEffect(() => {
+    if (isCarouselPaused) return;
+    const timer = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [isCarouselPaused, heroSlides.length, activeSlide]);
 
   // Sync Cart with LocalStorage on Mount
   useEffect(() => {
@@ -499,205 +496,214 @@ export default function App() {
       </AnimatePresence>
 
           {/* 4. HERO SECTION WITH CAROUSEL */}
-          <section className="relative overflow-hidden bg-brand-dark min-h-[520px] lg:min-h-[620px] flex items-center" id="top">
-        {/* Background Visual Animations & Generated Image for Slide 0 */}
-        <div className="absolute inset-0 z-0 transition-all duration-700">
-          {activeSlide === 0 ? (
-            <>
-              <img
-                src="https://i.postimg.cc/50TLPv7L/Whats-App-Image-2026-07-22-at-15-05-58.jpg"
-                alt="Iguaçu Geradores Capa"
-                className="w-full h-full object-cover object-center opacity-45 lg:opacity-55"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/95 to-brand-dark/50 lg:via-brand-dark/90 lg:to-transparent"></div>
-            </>
-          ) : (
-            <>
-              <div className="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-blue/10 to-brand-dark opacity-30"></div>
-              <div className="absolute top-10 left-10 w-72 h-72 rounded-full bg-brand-blue filter blur-[120px] animate-pulse"></div>
-              <div className="absolute bottom-10 right-10 w-96 h-96 rounded-full bg-brand-red filter blur-[150px] animate-pulse"></div>
-            </>
-          )}
+          <section
+            className="relative overflow-hidden bg-brand-dark min-h-[520px] lg:min-h-[620px] flex items-center"
+            id="top"
+            onMouseEnter={() => setIsCarouselPaused(true)}
+            onMouseLeave={() => setIsCarouselPaused(false)}
+            onFocusCapture={() => setIsCarouselPaused(true)}
+            onBlurCapture={() => setIsCarouselPaused(false)}
+          >
+        {/* Background Visual Animations & Cover Image with smooth crossfade */}
+        <div className="absolute inset-0 z-0">
+          <div className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${activeSlide === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+            <img
+              src="https://i.postimg.cc/50TLPv7L/Whats-App-Image-2026-07-22-at-15-05-58.jpg"
+              alt="Iguaçu Geradores Capa"
+              className="w-full h-full object-cover object-center opacity-45 lg:opacity-55"
+              referrerPolicy="no-referrer"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/95 to-brand-dark/50 lg:via-brand-dark/90 lg:to-transparent"></div>
+          </div>
+          <div className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${activeSlide === 1 ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+            <div className="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-blue/10 to-brand-dark opacity-30"></div>
+            <div className="absolute top-10 left-10 w-72 h-72 rounded-full bg-brand-blue filter blur-[120px] animate-pulse"></div>
+            <div className="absolute bottom-10 right-10 w-96 h-96 rounded-full bg-brand-red filter blur-[150px] animate-pulse"></div>
+          </div>
         </div>
 
-        {/* Carousel Content */}
+        {/* Carousel Content - Stacked in single CSS grid cell to keep height stable and prevent scroll jumps */}
         <div className="max-w-7xl mx-auto px-4 py-12 md:py-16 lg:py-20 relative z-10 w-full">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeSlide}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5 }}
-              className="w-full text-left"
+          <div className="grid grid-cols-1 items-center">
+            {/* SLIDE 1: FABRICAÇÃO E MONTAGEM DE GRUPOS GERADORES SOB MEDIDA */}
+            <div
+              className={`col-start-1 row-start-1 w-full text-left transition-all duration-700 ease-in-out ${
+                activeSlide === 0
+                  ? 'opacity-100 translate-x-0 pointer-events-auto z-10'
+                  : 'opacity-0 -translate-x-6 pointer-events-none z-0'
+              }`}
+              aria-hidden={activeSlide !== 0}
             >
-              {activeSlide === 0 ? (
-                /* CUSTOM FLIER LAYOUT FOR SLIDE 0 */
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-                  <div className="lg:col-span-7 space-y-6">
-                    {/* Badge */}
-                    <div className="inline-flex items-center gap-2 bg-brand-red text-slate-900 text-[10px] md:text-xs font-black px-4 py-2 rounded-full uppercase tracking-widest shadow-md border border-brand-red/20">
-                      <Zap className="w-3.5 h-3.5 fill-current text-slate-900 shrink-0 animate-pulse" />
-                      <span>{heroSlides[0].badge}</span>
-                    </div>
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                <div className="lg:col-span-7 space-y-6">
+                  {/* Badge */}
+                  <div className="inline-flex items-center gap-2 bg-brand-red text-slate-900 text-[10px] md:text-xs font-black px-4 py-2 rounded-full uppercase tracking-widest shadow-md border border-brand-red/20">
+                    <Zap className="w-3.5 h-3.5 fill-current text-slate-900 shrink-0 animate-pulse" />
+                    <span>{heroSlides[0].badge}</span>
+                  </div>
 
-                    {/* Headline */}
-                    <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-[1.08] font-heading uppercase">
-                      FABRICAÇÃO E MONTAGEM DE <span className="text-brand-red font-black">GRUPOS GERADORES SOB MEDIDA</span>
-                    </h1>
+                  {/* Headline */}
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-[1.08] font-heading uppercase">
+                    FABRICAÇÃO E MONTAGEM DE <span className="text-brand-red font-black">GRUPOS GERADORES SOB MEDIDA</span>
+                  </h1>
 
-                    {/* Slogan */}
-                    <p className="text-slate-300 text-sm md:text-base lg:text-lg font-light leading-relaxed max-w-2xl border-l-4 border-brand-red pl-3 bg-brand-dark/40 py-1.5 rounded-r-lg">
-                      {heroSlides[0].subtitle}
-                    </p>
+                  {/* Slogan */}
+                  <p className="text-slate-300 text-sm md:text-base lg:text-lg font-light leading-relaxed max-w-2xl border-l-4 border-brand-red pl-3 bg-brand-dark/40 py-1.5 rounded-r-lg">
+                    {heroSlides[0].subtitle}
+                  </p>
 
-                    {/* 4 Pillars Grid - Ordered by service priority */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1 max-w-2xl">
-                      {[
-                        { title: 'Fabricação e Montagem', desc: 'Grupos geradores diesel sob medida' },
-                        { title: 'Peças e Componentes', desc: 'Fornecimento completo com garantia' },
-                        { title: 'Manutenção Preventiva e Corretiva', desc: 'Planos programados e corretivos' },
-                        { title: 'Assistência Técnica e Plantão 24h', desc: 'Atendimento sempre que precisar' }
-                      ].map((pillar, index) => (
-                        <div key={index} className="flex gap-2.5 items-start bg-brand-dark/60 p-3 rounded-xl border border-white/5 backdrop-blur-xs">
-                          <div className="w-5 h-5 bg-brand-red/20 text-brand-red rounded-full flex items-center justify-center shrink-0 mt-0.5">
-                            <Check className="w-3.5 h-3.5 stroke-[3px]" />
-                          </div>
-                          <div>
-                            <h4 className="font-bold text-white text-xs md:text-sm uppercase tracking-wide">{pillar.title}</h4>
-                            <p className="text-[10px] md:text-xs text-slate-400 mt-0.5 leading-tight">{pillar.desc}</p>
-                          </div>
+                  {/* 4 Pillars Grid - Ordered by service priority */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1 max-w-2xl">
+                    {[
+                      { title: 'Fabricação e Montagem', desc: 'Grupos geradores diesel sob medida' },
+                      { title: 'Peças e Componentes', desc: 'Fornecimento completo com garantia' },
+                      { title: 'Manutenção Preventiva e Corretiva', desc: 'Planos programados e corretivos' },
+                      { title: 'Assistência Técnica e Plantão 24h', desc: 'Atendimento sempre que precisar' }
+                    ].map((pillar, index) => (
+                      <div key={index} className="flex gap-2.5 items-start bg-brand-dark/60 p-3 rounded-xl border border-white/5 backdrop-blur-xs">
+                        <div className="w-5 h-5 bg-brand-red/20 text-brand-red rounded-full flex items-center justify-center shrink-0 mt-0.5">
+                          <Check className="w-3.5 h-3.5 stroke-[3px]" />
                         </div>
-                      ))}
-                    </div>
-
-                    {/* Yellow Ribbon */}
-                    <div className="bg-brand-red text-slate-900 py-3 px-4 rounded-xl text-xs md:text-sm font-black flex items-center gap-2 tracking-wide uppercase shadow-lg border-l-4 border-brand-blue animate-pulse-gentle">
-                      <Shield className="w-4 h-4 fill-current shrink-0" />
-                      <span>Projetos Personalizados de Acordo com sua Necessidade</span>
-                    </div>
-
-                    {/* CTA Buttons */}
-                    <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                      <a
-                        href="https://wa.me/5545999299311?text=Olá!%20Gostaria%20de%20solicitar%20um%20projeto%20de%20grupo%20gerador%20sob%20medida%20com%20a%20Iguaçu%20Geradores."
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-brand-red hover:bg-brand-red/95 text-slate-900 font-black px-7 py-4 rounded-xl text-xs uppercase tracking-wider shadow-lg shadow-brand-red/20 hover:shadow-brand-red/40 transition-all text-center flex items-center justify-center gap-2 group cursor-pointer"
-                      >
-                        <MessageSquare className="w-4.5 h-4.5 fill-current text-slate-900 shrink-0" />
-                        <span>SOLICITE SEU PROJETO</span>
-                      </a>
-                      <button
-                        onClick={() => {
-                          setSelectedCategory('geradores');
-                          scrollToSection('catalogo');
-                        }}
-                        className="bg-white/10 hover:bg-white/15 text-white border border-white/20 hover:border-white/40 px-7 py-4 rounded-xl text-xs font-bold uppercase tracking-wider transition-all text-center flex items-center justify-center gap-2 cursor-pointer"
-                      >
-                        <Package className="w-4.5 h-4.5" />
-                        <span>Ver Geradores</span>
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Sectors side panel / cards for Slide 0 */}
-                  <div className="lg:col-span-5 space-y-4">
-                    <div className="bg-brand-dark/70 border border-white/10 backdrop-blur-md rounded-2xl p-5 shadow-2xl">
-                      <h3 className="text-xs font-black text-brand-red uppercase tracking-widest mb-3.5 flex items-center gap-1.5 border-b border-white/10 pb-2">
-                        <SlidersHorizontal className="w-3.5 h-3.5 text-brand-red" />
-                        <span>Selecione seu Segmento</span>
-                      </h3>
-                      <div className="space-y-2.5">
-                        {[
-                          { name: 'INDÚSTRIAS', icon: Factory, text: 'Garantia de produção contínua sem paradas técnicas.' },
-                          { name: 'AGRONEGÓCIO', icon: Sprout, text: 'Segurança energética para aviários, pivôs e ordenhas.' },
-                          { name: 'EMPRESAS E COMÉRCIOS', icon: Building, text: 'Proteção contra apagões e perdas no faturamento.' },
-                          { name: 'HOSPITAIS E CLÍNICAS', icon: HeartPulse, text: 'Segurança absoluta para a vida e equipamentos críticos.' },
-                          { name: 'RESIDÊNCIAS E CONDOMÍNIOS', icon: Home, text: 'Conforto e funcionamento ininterrupto de elevadores e portões.' }
-                        ].map((sector, index) => {
-                          const IconComp = sector.icon;
-                          return (
-                            <button
-                              key={index}
-                              onClick={() => {
-                                setSelectedCategory('geradores');
-                                scrollToSection('catalogo');
-                              }}
-                              className="w-full text-left bg-white/5 hover:bg-brand-red/10 hover:border-brand-red/40 border border-white/5 p-3 rounded-xl transition-all flex items-center gap-3 group cursor-pointer"
-                            >
-                              <div className="w-9 h-9 bg-brand-blue/30 text-brand-red rounded-lg flex items-center justify-center shrink-0 group-hover:bg-brand-red group-hover:text-slate-950 transition-all border border-brand-red/10 shadow-sm">
-                                <IconComp className="w-4.5 h-4.5" />
-                              </div>
-                              <div className="flex-1 min-w-0">
-                                <div className="text-xs font-black text-white tracking-wide uppercase group-hover:text-brand-red transition-all flex items-center justify-between">
-                                  <span>{sector.name}</span>
-                                  <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
-                                </div>
-                                <p className="text-[10px] text-slate-400 mt-0.5 leading-tight group-hover:text-slate-300 transition-all truncate">
-                                  {sector.text}
-                                </p>
-                              </div>
-                            </button>
-                          );
-                        })}
+                        <div>
+                          <h4 className="font-bold text-white text-xs md:text-sm uppercase tracking-wide">{pillar.title}</h4>
+                          <p className="text-[10px] md:text-xs text-slate-400 mt-0.5 leading-tight">{pillar.desc}</p>
+                        </div>
                       </div>
-                    </div>
+                    ))}
                   </div>
-                </div>
-              ) : (
-                /* STANDARD SLIDE LAYOUT FOR SLIDES 1 & 2 */
-                <div className="max-w-3xl space-y-6 py-6">
-                  <span className="inline-block bg-brand-red text-slate-900 text-[11px] md:text-xs font-extrabold px-3 py-1.5 rounded-full uppercase tracking-widest border border-brand-red/30 shadow-md">
-                    {heroSlides[activeSlide].badge}
-                  </span>
-                  <h2 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.1] font-heading uppercase">
-                    {heroSlides[activeSlide].title}
-                  </h2>
-                  <div className="text-slate-300 text-sm md:text-base lg:text-lg font-light leading-relaxed max-w-2xl">
-                    {heroSlides[activeSlide].subtitle}
+
+                  {/* Yellow Ribbon */}
+                  <div className="bg-brand-red text-slate-900 py-3 px-4 rounded-xl text-xs md:text-sm font-black flex items-center gap-2 tracking-wide uppercase shadow-lg border-l-4 border-brand-blue animate-pulse-gentle">
+                    <Shield className="w-4 h-4 fill-current shrink-0" />
+                    <span>Projetos Personalizados de Acordo com sua Necessidade</span>
                   </div>
-                  
-                  <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center pt-2">
-                    <button
-                      onClick={() => {
-                        if (heroSlides[activeSlide].actionCategory === 'pecas') {
-                          scrollToSection('pecas');
-                        } else {
-                          setSelectedCategory(heroSlides[activeSlide].actionCategory);
-                          scrollToSection('catalogo');
-                        }
-                      }}
-                      className="bg-brand-red text-slate-900 hover:bg-brand-red/95 px-8 py-4 rounded-xl text-sm md:text-base font-extrabold shadow-lg shadow-brand-red/20 hover:shadow-brand-red/45 transition-all text-center flex items-center justify-center gap-2 group cursor-pointer"
-                    >
-                      <span>{heroSlides[activeSlide].buttonText}</span>
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </button>
+
+                  {/* CTA Buttons */}
+                  <div className="flex flex-col sm:flex-row gap-3 pt-2">
                     <a
-                      href="https://wa.me/5545999299311?text=Olá,%20Iguaçu%20Geradores!%20Gostaria%20de%20falar%20com%20um%20especialista%20sobre%20geradores."
+                      href="https://wa.me/5545999299311?text=Olá!%20Gostaria%20de%20solicitar%20um%20projeto%20de%20grupo%20gerador%20sob%20medida%20com%20a%20Iguaçu%20Geradores."
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-white/10 hover:bg-white/15 text-white border border-white/20 hover:border-white/40 px-8 py-4 rounded-xl text-sm md:text-base font-bold transition-all text-center flex items-center justify-center gap-2"
+                      tabIndex={activeSlide === 0 ? 0 : -1}
+                      className="bg-brand-red hover:bg-brand-red/95 text-slate-900 font-black px-7 py-4 rounded-xl text-xs uppercase tracking-wider shadow-lg shadow-brand-red/20 hover:shadow-brand-red/40 transition-all text-center flex items-center justify-center gap-2 group cursor-pointer"
                     >
-                      <MessageSquare className="w-5 h-5 fill-current text-green-400" />
-                      <span>Atendimento WhatsApp</span>
+                      <MessageSquare className="w-4.5 h-4.5 fill-current text-slate-900 shrink-0" />
+                      <span>SOLICITE SEU PROJETO</span>
                     </a>
+                    <button
+                      onClick={() => {
+                        setSelectedCategory('geradores');
+                        scrollToSection('catalogo');
+                      }}
+                      tabIndex={activeSlide === 0 ? 0 : -1}
+                      className="bg-white/10 hover:bg-white/15 text-white border border-white/20 hover:border-white/40 px-7 py-4 rounded-xl text-xs font-bold uppercase tracking-wider transition-all text-center flex items-center justify-center gap-2 cursor-pointer"
+                    >
+                      <Package className="w-4.5 h-4.5" />
+                      <span>Ver Geradores</span>
+                    </button>
                   </div>
                 </div>
-              )}
-            </motion.div>
-          </AnimatePresence>
 
-          {/* Carousel Slide Indicators */}
-          <div className="absolute bottom-6 left-4 right-4 flex justify-between items-center z-10">
+                {/* Sectors side panel / cards for Slide 0 */}
+                <div className="lg:col-span-5 space-y-4">
+                  <div className="bg-brand-dark/70 border border-white/10 backdrop-blur-md rounded-2xl p-5 shadow-2xl">
+                    <h3 className="text-xs font-black text-brand-red uppercase tracking-widest mb-3.5 flex items-center gap-1.5 border-b border-white/10 pb-2">
+                      <SlidersHorizontal className="w-3.5 h-3.5 text-brand-red" />
+                      <span>Selecione seu Segmento</span>
+                    </h3>
+                    <div className="space-y-2.5">
+                      {[
+                        { name: 'INDÚSTRIAS', icon: Factory, text: 'Garantia de produção contínua sem paradas técnicas.' },
+                        { name: 'AGRONEGÓCIO', icon: Sprout, text: 'Segurança energética para aviários, pivôs e ordenhas.' },
+                        { name: 'EMPRESAS E COMÉRCIOS', icon: Building, text: 'Proteção contra apagões e perdas no faturamento.' },
+                        { name: 'HOSPITAIS E CLÍNICAS', icon: HeartPulse, text: 'Segurança absoluta para a vida e equipamentos críticos.' },
+                        { name: 'RESIDÊNCIAS E CONDOMÍNIOS', icon: Home, text: 'Conforto e funcionamento ininterrupto de elevadores e portões.' }
+                      ].map((sector, index) => {
+                        const IconComp = sector.icon;
+                        return (
+                          <button
+                            key={index}
+                            onClick={() => {
+                              setSelectedCategory('geradores');
+                              scrollToSection('catalogo');
+                            }}
+                            tabIndex={activeSlide === 0 ? 0 : -1}
+                            className="w-full text-left bg-white/5 hover:bg-brand-red/10 hover:border-brand-red/40 border border-white/5 p-3 rounded-xl transition-all flex items-center gap-3 group cursor-pointer"
+                          >
+                            <div className="w-9 h-9 bg-brand-blue/30 text-brand-red rounded-lg flex items-center justify-center shrink-0 group-hover:bg-brand-red group-hover:text-slate-950 transition-all border border-brand-red/10 shadow-sm">
+                              <IconComp className="w-4.5 h-4.5" />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="text-xs font-black text-white tracking-wide uppercase group-hover:text-brand-red transition-all flex items-center justify-between">
+                                <span>{sector.name}</span>
+                                <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
+                              </div>
+                              <p className="text-[10px] text-slate-400 mt-0.5 leading-tight group-hover:text-slate-300 transition-all truncate">
+                                {sector.text}
+                              </p>
+                            </div>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* SLIDE 2: MANUTENÇÃO PREVENTIVA, CORRETIVA E PLANTÃO 24H */}
+            <div
+              className={`col-start-1 row-start-1 w-full text-left transition-all duration-700 ease-in-out ${
+                activeSlide === 1
+                  ? 'opacity-100 translate-x-0 pointer-events-auto z-10'
+                  : 'opacity-0 translate-x-6 pointer-events-none z-0'
+              }`}
+              aria-hidden={activeSlide !== 1}
+            >
+              <div className="max-w-3xl space-y-6 py-6">
+                <span className="inline-block bg-brand-red text-slate-900 text-[11px] md:text-xs font-extrabold px-3 py-1.5 rounded-full uppercase tracking-widest border border-brand-red/30 shadow-md">
+                  {heroSlides[1].badge}
+                </span>
+                <h2 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.1] font-heading uppercase">
+                  {heroSlides[1].title}
+                </h2>
+                <div className="text-slate-300 text-sm md:text-base lg:text-lg font-light leading-relaxed max-w-2xl">
+                  {heroSlides[1].subtitle}
+                </div>
+                
+                <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center pt-2">
+                  <button
+                    onClick={() => scrollToSection(heroSlides[1].actionTarget)}
+                    tabIndex={activeSlide === 1 ? 0 : -1}
+                    className="bg-brand-red text-slate-900 hover:bg-brand-red/95 px-8 py-4 rounded-xl text-sm md:text-base font-extrabold shadow-lg shadow-brand-red/20 hover:shadow-brand-red/45 transition-all text-center flex items-center justify-center gap-2 group cursor-pointer"
+                  >
+                    <span>{heroSlides[1].buttonText}</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                  <a
+                    href="https://wa.me/5545999299311?text=Olá,%20Iguaçu%20Geradores!%20Gostaria%20de%20falar%20com%20um%20especialista%20sobre%20manutenção%20e%20assistência%20técnica."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    tabIndex={activeSlide === 1 ? 0 : -1}
+                    className="bg-white/10 hover:bg-white/15 text-white border border-white/20 hover:border-white/40 px-8 py-4 rounded-xl text-sm md:text-base font-bold transition-all text-center flex items-center justify-center gap-2"
+                  >
+                    <MessageSquare className="w-5 h-5 fill-current text-green-400" />
+                    <span>Atendimento WhatsApp</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Carousel Slide Indicators (2 discrete dots) */}
+          <div className="absolute bottom-6 left-4 right-4 flex justify-between items-center z-20">
             <div className="flex gap-2">
               {heroSlides.map((_, idx) => (
                 <button
                   key={idx}
                   onClick={() => setActiveSlide(idx)}
-                  className={`h-2.5 rounded-full transition-all duration-300 ${
-                    idx === activeSlide ? 'w-8 bg-brand-red' : 'w-2.5 bg-slate-500 hover:bg-slate-400'
+                  className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                    idx === activeSlide ? 'w-8 bg-brand-red' : 'w-2.5 bg-slate-500/70 hover:bg-slate-400'
                   }`}
                   aria-label={`Ir para slide ${idx + 1}`}
                 />
